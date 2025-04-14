@@ -1,24 +1,27 @@
-use study_1_2;
 
-# customer 생성
+use team_1_2;
+
+
 create table Customer(
 	custid int primary key,
 	cname varchar(10) not null,
 	phone varchar(8),
 	why varchar(30)
+
 );
+
 desc Customer;
-#Target
+
 create table Target(
 	targetid int primary key,
 	tname varchar(10) not null,
 	address varchar(20) not null,
 	gang varchar(10),
+
 	price int not null
 );
 desc Target;
 
-# Order_kill 생성
 create table Order_Kill(
 	kid int primary key,
 	custid int,
@@ -43,12 +46,26 @@ insert into Target values(200, 'Logitech', '스위스', 'Logitech', 10000);
 insert into Target values(300, '잠만보', '관동지방', '태초마을', 30000);
 insert into Target values(400, 'Tesla', '미국', '미국', 40000);
 
+
+
 insert into Order_Kill values(1, 117, 150, '2025-04-07', '강펀치');
 insert into Order_Kill values(2, 917, 200, '2025-02-03', '야스오 콤보');
 insert into Order_Kill values(3, 471, 100, '2025-08-11', 'tung tung tung tung tung sahur');
 insert into Order_Kill values(4, 999, 200, '2025-09-21', '야스오 콤보(e-q플-e-q-궁');
 insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 
+
 select * from Customer;
+
+
+
+
 select * from Target;
-select * from Order_Kill;
+
+
+
+
+select * from Order_Kill
+
+
+
