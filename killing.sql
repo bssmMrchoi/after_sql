@@ -1,11 +1,13 @@
 use team_1_2;
 
 create table Customer(
+
 	custid int primary key,
 	cname varchar(10) not null,
 	phone varchar(8),
 	why varchar(30)
 );
+
 desc Customer;
 #Target
 create table Target(
@@ -52,3 +54,17 @@ select * from Customer;
 select * from Target;
 select * from Order_Kill;
 select * from Customer;
+
+# 1. 살해 방법이 야스오로 시작하는 행의 고객 id 검색
+select custid from Order_Kill where how like '야스오%';
+
+# 3. 가격이 20000원 이상인 타겟의 이름을 구하시오.
+select tname from Target where price > 20000;
+
+# 4. 고객 id가 400이 넘는 고객의 사유를 구하시오.
+select why from Customer where custid > 400;
+
+
+
+
+
