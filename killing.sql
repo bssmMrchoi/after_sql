@@ -1,5 +1,3 @@
-
-
 # customer 생성
 create table Customer(
 	custid int primary key,
@@ -91,5 +89,31 @@ select *
 from Target
 order by tname asc;
 
+#1. 청구비용이 가장 비싼 것과 가장 싼 가격을 검색하시오.
+select max(price) as max_price, min(price) as min_price
+from Target;
 
 
+#3. 고객번호가 471인 고객의 타겟의 가격 평균
+select avg(t.price) as avg_price
+from Target t
+join Order_Kill ok on t.targetid = ok.targetid
+where ok.custid = 471;
+
+
+#4. 청구비용이 가장 싼 타겟을 찾으시오.
+select t.*
+from Target t
+join (
+    select min(price) as min_price
+    from Target
+) as min_t
+on t.price = min_t.min_price;
+
+
+#2. 이형민을 저주합니다
+select c.cname, c.why
+from Customer c
+join Order_Kill ok on c.custid = ok.custid
+join Target t on ok.targetid = t.targetid
+where t.price = (select max(price) from Target);
