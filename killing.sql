@@ -58,4 +58,11 @@ select * from Target;
 
 select * from Order_Kill;
 
-select * from Order_Kill;
+
+#1. 살해 방법이 ‘야스오’로 시작하는 행의 고객 id를 구하시오.
+select custid from Order_Kill where how like '야스오%';
+#2. 살인 청부 가격이 20000원 이상인 타겟의 고객이름을 구하시오
+#3. 가격이 20000원 이상인 타겟의 이름을 구하시오.
+select tname from Target where price > 20000;
+#4. 고객id가 400이 넘는 고객의 사유를 구하시오.
+select why from Customer where custid > 400;
