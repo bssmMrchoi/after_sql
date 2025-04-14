@@ -52,30 +52,31 @@ insert into Order_Kill values(4, 999, 200, '2025-09-21', '야스오 콤보(e-q�
 insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 
 select * from Customer;
-
-
-
-
-
-
 select * from Target;
-
-
-
-
-
 select * from Order_Kill;
-
-
 
 #1. 살해 방법이 ‘야스오’로 시작하는 행의 고객 id를 구하시오.
 select custid from Order_Kill where how like '야스오%';
 
-
 #2. 살인 청부 가격이 20000원 이상인 타겟의 고객이름을 구하시오
+select * from Target t join Order_Kill ok on t.targetid=ok.targetid join Customer c on ok.custid=c.custid where t.price>=20000;
 
 #3. 가격이 20000원 이상인 타겟의 이름을 구하시오.
 select tname from Target where price>=20000;
 
 #4. 고객id가 400이 넘는 고객의 사유를 구하시오.
 select why from Customer where custid>=400;
+
+#1. target의 가격이 비싼 순으로 정렬하여 검색하세요.
+select * from Target order by price desc
+;
+#2. 날짜와 청부 이유를 내림차순으로 정렬한 결과를 출력하시오
+select ok.d_day, c.why from Order_Kill ok join Customer c on ok.custid=c.custid order by ok.d_day desc
+;
+
+#3. 살해방법을 날짜순(오름차순)으로 정렬한 결과를 출력하시오.
+select how, d_day from Order_Kill order by d_day;
+
+#4. 타겟을 이름순으로 검색하시오.
+select tname from Target order by tname;
+
