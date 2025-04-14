@@ -52,7 +52,10 @@ insert into Order_Kill values(4, 999, 200, '2025-09-21', '야스오 콤보(e-q�
 insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 
 select * from Customer;
+
 select * from Target;
+
+
 select * from Order_Kill;
 
 #1. 살해 방법이 ‘야스오’로 시작하는 행의 고객 id를 구하시오.
@@ -79,4 +82,22 @@ select how, d_day from Order_Kill order by d_day;
 
 #4. 타겟을 이름순으로 검색하시오.
 select tname from Target order by tname;
+
+#1. 청구비용이 가장 비싼 것과 가장 싼 가격을 검색하시오.
+select max(price), min(price) from Target;
+
+#2. 가장 큰 현상금을 가진 타겟의 고객의 이름과 이유를 구하시오
+
+select c.cname, c.why
+from Customer c join Order_Kill
+ ok on ok.custid=c.custid join Target t on ok.targetid=t.targetid
+where t.price = (select max(price) from Target);
+
+--#3. 고객번호가 471인 고객의 타겟의 가격 평균
+select avg(t.price) from Target t join Order_Kill ok on t.targetid=ok.targetid
+where custid=471;
+
+--#4. 청구비용이 가장 싼 타겟을 찾으시오.
+select tname from Target where price=(select min(price) from Target);
+
 
