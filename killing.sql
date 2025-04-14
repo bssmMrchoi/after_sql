@@ -80,6 +80,67 @@ select how,d_day from Order_Kill order by d_day asc;
 select tname from Target order by tname ;
 
 
+#1
+SELECT MAX(price) AS 최고가, MIN(price) AS 최저가
+FROM Target;
+#2
+select c.cname,c.whyfrom Customer c join Order_Kill Ok on c.custid=Ok.custid join Target T on Ok.targetid = T.targetidwhere T.price=(select max(price) from Target);
+
+#3
+SELECT AVG(T.price) AS 평균가격
+FROM Target T
+JOIN Order_Kill Ok ON T.targetid = Ok.targetid
+WHERE Ok.custid = 471;
+#4
+select * from Target where price = (select min(price) from Target)
+
+
+
+
+#1
+SELECT c.cname, COUNT(Ok.targetid) AS 타겟수
+FROM Customer c
+JOIN Order_Kill Ok ON c.custid = Ok.custid
+GROUP BY c.custid, c.cname;
+
+
+#2
+select c.custid, count(c.custid)
+from Customer c join Order_Kill ok on c.custid= o.custid join Target T on ok
+ group by c.custid,T.price
+ having T.price > 50000;
+
+#3
+select targetid from Order_Kill group by targetid having count(*)>=2;
+
+#4
+SELECT
+    c.cname AS 고객명,
+    COUNT(DISTINCT t.targetid) AS 타겟_명수,
+    SUM(t.price) AS 총_청부비용
+FROM Customer c
+JOIN Order_Kill ok ON c.custid = ok.custid
+JOIN Target t ON ok.targetid = t.targetid
+GROUP BY c.custid, c.cname;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
