@@ -85,3 +85,11 @@ select c.cname, c.why from Customer c join Order_Kill o on c.custid = o.custid J
 select avg(price) from Target t join Order_Kill o on o.targetid = t.targetid Join Customer c on c.custid = o.custid where c.custid = 471;
 select * from Target where price = (select min(price) from Target);
 
+--1. 고객별 청부한 타겟의 수를 검색하시오.
+--2. 고객별 청부 금액이 50000원을 초과하는 청부를 몇번 넣었는지, 50000원 초과 청부의 가격 총 합을 구하시오
+--3. 살인 청부를 받은 횟수가 2번 이상인 타겟의 고객번호 최댓값을 구하시오.
+--4. 고객별로 요청한 타겟의 총 명수와 총 청부비용을 구하시오.
+select custid, count(*) from Order_Kill group by custid;
+select c.custid, count(c.custid), sum(t.price) from Customer c join Order_Kill o on c.custid = o.custid join Target t on o.targetid = t.targetid group by c.custid, t.price having t.price > 50000;
+select max(c.custid) from Customer c join Order_Kill o on c.custid = o.custid join Target t on o.targetid = t.targetid group by t.targetid having count(t.targetid) >= 2;
+select o.custid, count(*), sum(price) from Order_Kill o join Target t on o.targetid = t.targetid group by o.custid;
