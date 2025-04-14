@@ -56,7 +56,23 @@ select * from Target;
 select * from Order_Kill;
 
 
-1. select custid from Order_Kill where how like '야스오%';
-3. select tname from Target where price >= 20000;
-4. select why from Customer where custid >= 400;
+select custid from Order_Kill where how like '야스오%';
+select * from Target t join Order_Kill ok on t.targetid = ok.targetid join Customer c on ok.custid = c.custid
+where t.price >= 20000;
+select tname from Target where price >= 20000;
+select why from Customer where custid >= 400;
 
+
+#1. target의 가격이 비싼 순으로 정렬하여 검색하세요.
+select price from Target order by price;
+
+#2. 날짜와 청부 이유를 내림차순으로 정렬한 결과를 출력하시오
+select c.why, ok.d_day
+from Order_Kill ok join Customer c on ok.custid=c.custid
+order by ok.d_day  desc;
+
+#3. 살해방법을 날짜순(오름차순)으로 정렬한 결과를 출력하시오.
+select how,d_day from Order_Kill order by how ;
+
+#4. 타겟을 이름순으로 검색하시오.
+select tname from Target order by tname;
