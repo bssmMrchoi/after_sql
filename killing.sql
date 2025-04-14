@@ -64,7 +64,7 @@ select why from Customer where custid >= 400;
 
 
 #1. target의 가격이 비싼 순으로 정렬하여 검색하세요.
-select price from Target order by price;
+select price from Target order by price desc;
 
 #2. 날짜와 청부 이유를 내림차순으로 정렬한 결과를 출력하시오
 select c.why, ok.d_day
@@ -76,3 +76,21 @@ select how,d_day from Order_Kill order by how ;
 
 #4. 타겟을 이름순으로 검색하시오.
 select tname from Target order by tname;
+
+
+#1.청구비용이 가장 비싼 것과 가장 싼 가격을 검색하시오.
+select min(price), max(price) from Target;
+
+#2. 가장 큰 현상금을 가진 타겟의 고객의 이름과 이유를 구하시오
+select c.cname, c.why
+from Customer c join Order_Kill OK on c.custid = OK.custid
+join Target T on OK.targetid = T.targetid
+where T.price =100000 = (select max(price) from Target);
+
+#3. 고객번호가 471인 고객의 타겟의 가격 평균
+select avg(price) from Target where targetid in (select targetid from Order_Kill where custid = 471);
+
+#4. 청구비용이 가장 싼 타겟을 찾으시오.
+select price from Target where price = (select min(price) from Target);
+
+

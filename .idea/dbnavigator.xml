@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
@@ -49,7 +49,7 @@ select * from Order_kill;]]></console>
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/killing.sql" connection-id="eb81d78d-1fb1-4187-838f-0da908735707" session-id="MAIN" current-schema="study_1_2" />
+    <mapping file-url="file://$PROJECT_DIR$/killing.sql" connection-id="eb81d78d-1fb1-4187-838f-0da908735707" session-id="MAIN" current-schema="team_1_2" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -62,6 +62,9 @@ select * from Order_kill;]]></console>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
+  </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
