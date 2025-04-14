@@ -57,3 +57,5 @@ select * from Customer;
 select * from Target;
 
 select * from Order_Kill;
+
+select * from Order_Kill;
