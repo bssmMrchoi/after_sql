@@ -67,4 +67,4 @@ select tname from Target where price > 20000;
 #4. 고객id가 400이 넘는 고객의 사유를 구하시오.
 select why from Customer where custid > 400;
 
-#5.
+#5
