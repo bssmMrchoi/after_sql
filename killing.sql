@@ -65,6 +65,17 @@ select * from Order_Kill;
 
 
 select custid from Order_Kill where how like '야스오%';
+select * from Target t join Order_Kill o on t.targetid = o.targetid join Customer c on o.custid=c.custid where t.price>=20000;
 select tname from Target where price >=20000;
 select why from Customer where custid>400;
+
+select * from Target order by price desc;
+select why, d_day from Customer c join Order_Kill o on c.custid=o.custid order by o.d_day desc;
+select how from Order_Kill order by d_day;
+select * from Target order by tname;
+
+
+
+
+
 
