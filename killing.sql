@@ -79,11 +79,11 @@ from Target t join Order_Kill ok on t.targetid = ok.targetid join Customer c on 
 where t.price >= 20000;
 
 #1. target의 가격이 비싼 순으로 정렬하여 검색하세요.
-select tname, price from Target order by price;
+select tname, price from Target order by price desc;
 #2. 날짜와 청부 이유를 내림차순으로 정렬한 결과를 출력하시오
-select d_day, why from Order_Kill o join Customer c on o.custid=c.custid order by why;
+select d_day, why from Order_Kill o join Customer c on o.custid=c.custid order by d_day;
 #3. 살해방법을 날짜순(오름차순)으로 정렬한 결과를 출력하시오.
-select * from Order_Kill order by how desc;
+select how from Order_Kill order by how asc;
 #4. 타겟을 이름순으로 검색하시오.
 select tname from Target order by tname;
 
