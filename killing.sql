@@ -33,6 +33,7 @@ create table Order_Kill(
 desc Order_Kill;
 
 
+
 insert into Customer values(117, '야스오', '010-1101', '요네에게 누명쓰임요');
 insert into Customer values(917, '도우너 심슨', '010-2911', '부모의 원수');
 insert into Customer values(471, '이민길', '010-3812', '애인과의 결별');
@@ -55,3 +56,11 @@ select * from Customer;
 select * from Target;
 select * from Order_Kill;
 
+# where 조건
+
+# 1.살해 방법이 ‘야스오’로 시작하는 행의 고객 id를 구하시오.
+select custid from `Order_Kill` where how like  '야스오%';
+# 3. 가격이 20000원 이상인 타겟의 이름을 구하시오.
+select tname from `Target` where price >= 20000;
+# 4. 고객id가 400이 넘는 고객의 사유를 구하시오.
+select why from `Customer` where custid > 400;
