@@ -40,9 +40,7 @@ select * from Order_kill;]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="eb81d78d-1fb1-4187-838f-0da908735707" object-ref="consoles/Connection 1" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="eb81d78d-1fb1-4187-838f-0da908735707" />
