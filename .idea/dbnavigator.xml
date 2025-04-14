@@ -49,7 +49,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/killing.sql" connection-id="7b8354fd-648c-4d97-bb21-12c0381d7af1" session-id="MAIN" current-schema="mysql" />
+    <mapping file-url="file://$PROJECT_DIR$/killing.sql" connection-id="7b8354fd-648c-4d97-bb21-12c0381d7af1" session-id="MAIN" current-schema="team_1_2" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
