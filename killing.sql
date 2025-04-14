@@ -61,3 +61,12 @@ select cname from Customer where custid in (select custid from Order_Kill where 
 select tname from Target where price>=20000;
 #4. 고객id가 400이 넘는 고객의 사유를 구하시오.
 select how from Order_Kill where custid>400;
+
+#1. target의 가격이 비싼 순으로 정렬하여 검색하세요.
+select * from Target order by (price) desc;
+#2. 날짜와 청부 이유를 내림차순으로 정렬한 결과를 출력하시오
+select Order_Kill.d_day, Customer.why from Order_Kill join Customer on Order_Kill.custid = Customer.custid order by (d_day) desc;
+#3. 살해방법을 날짜순(오름차순)으로 정렬한 결과를 출력하시오.
+select how from Order_Kill order by (d_day);
+#4. 타겟을 이름순으로 검색하시오.
+select * from Target order by (tname);
