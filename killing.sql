@@ -72,5 +72,6 @@ select * from Customer where custid > 400
 --3. 고객번호가 471인 고객의 타겟의 가격 평균
 --4. 청구비용이 가장 싼 타겟을 찾으시오.
 select max(price) as 'max', min(price) as 'min' from Target;
-select avg(price) as 'Average of 471' from Target t on t.targetid = o.targetid join Order_Kill ok on ok.custid join Customer C on C.custid = 471;
+select avg(price) from Target t group by price having (select price From Order_Kill )
+select tname from Target group by price, tname having price = (SELECT MAX(price) FROM Target);
 
