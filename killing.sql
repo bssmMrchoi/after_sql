@@ -17,7 +17,6 @@ create table Target(
 	tname varchar(10) not null,
 	address varchar(20) not null,
 	gang varchar(10),
-
 	price int not null
 );
 desc Target;
@@ -67,5 +66,12 @@ select * from Target;
 
 select * from Order_Kill
 
+
+#1살해 방법이 야스오로 시작하는 행의 고객 id를 구하시오
+select custid from Order_Kill where how like '야스오%';
+#3가격이 20000원 이상인 타겟의 이름을 구하시오.
+select tname from Target where price >= 20000;
+#4고객id가 400이 넘는 고객의 사유를 구하시오.
+select why from Customer where custid > 400
 
 
