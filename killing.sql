@@ -65,4 +65,3 @@ where price >= 20000;
 select why
 from Customer
 where custid > 400;
-
