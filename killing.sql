@@ -73,3 +73,18 @@ select d_day, why from Order_Kill o join Customer c on o.custid=c.custid order b
 select how, d_day from Order_Kill order by d_day;
 # 4. 타겟을 이름순으로 검색하시오.
 select tname from Target order by tname;
+
+
+
+
+#1. 청구비용이 가장 비싼 것과 가장 싼 가격을 검색하시오.
+select Max(price), Min(price) from Target;
+#2. 가장 큰 현상금을 가진 타겟의 고객의 이름과 이유를 구하시오
+select c.cname, c.why from Customer c join Order_Kill o on c.custid=o.custid join
+Target t on o.targetid=t.targetid
+where t.price=100000;
+#3. 고객번호가 471인 고객의 타겟의 가격 평균
+select AVG(price) from Target t join Order_Kill o on t.targetid=o.targetid join
+ Customer c on o.custid=c.custid where c.custid=471;
+#4. 청구비용이 가장 싼 타겟을 찾으시오.
+select tname from Target where price=(select min(price) from Target);
