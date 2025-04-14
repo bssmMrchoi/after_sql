@@ -1,4 +1,6 @@
-use study_1_2;
+create database team_1_2;
+
+use team_1_2;
 
 # customer 생성
 create table Customer(
@@ -52,3 +54,11 @@ insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 select * from Customer;
 select * from Target;
 select * from Order_Kill;
+
+
+
+
+
+
+
+
