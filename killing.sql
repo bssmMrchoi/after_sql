@@ -70,6 +70,17 @@ select *
 from Target t join Order_Kill ok on t.targetid = ok.targetid join Customer c on ok.custid=c.custid
 where t.price >= 20000;
 
+#1
+select * from Target order by price desc;
+#2
+select d_day,how from Order_Kill order by d_day desc, how;
+#3
+select how,d_day from Order_Kill order by d_day asc;
+#4
+select tname from Target order by tname ;
+
+
+
 
 
 
