@@ -123,4 +123,3 @@ join Customer c on ok.custid = c.custid group by c.custid, t.price;
 
 
 
-
