@@ -76,6 +76,6 @@ select ok.d_day, c.why
 from Target t join Order_Kill ok on t.targetid = ok.targetid join Customer c on ok.custid = c.custid
 order by ok.d_day desc;
 #3. 살해방법을 날짜순(오름차순)으로 정렬한 결과를 출력하시오.
-select how, d_day from Order_Kill order by d_day;
+select how, d_day from Order_Kill order by d_day asc;
 #4. 타겟을 이름순으로 검색하시오.
-select * from Target order by tname;
+select * from Target order by tname asc;
