@@ -74,6 +74,13 @@ select why, d_day from Customer c join Order_Kill o on c.custid=o.custid order b
 select how from Order_Kill order by d_day;
 select * from Target order by tname;
 
+select max(price), min(price) from Target;
+select cname, why from Customer c join Order_Kill o on c.custid = o.custid join Target t on o.targetid=t.targetid
+where t.price = (select max(price) from Target);
+select avg(t.price) from Order_Kill o join Target t on o.targetid=t.targetid where o.custid=471;
+select * from Target where price= (select min(price) from Target);
+
+
 
 
 
