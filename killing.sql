@@ -117,3 +117,33 @@ from Customer c
 join Order_Kill ok on c.custid = ok.custid
 join Target t on ok.targetid = t.targetid
 where t.price = (select max(price) from Target);
+
+#1. 고객별 청부한 타겟의 수를 검색하시오.
+select custid, count(targetid) as num_targets
+from Order_Kill
+group by custid;
+
+#2. 고객별 청부 금액이 50000원을 초과하는 청부를 몇번 넣었는지, 50000원 초과 청부의 가격 총 합을 구하시오
+select ok.custid,
+       count(ok.kid) as num_orders_over_50000,
+       sum(t.price) as total_price_over_50000
+from Order_Kill ok
+join Customer c on c.custid = ok.custid
+join Target t on ok.targetid = t.targetid
+group by ok.custid
+having sum(t.price) > 50000;
+
+#3. 살인 청부를 받은 횟수가 2번 이상인 타겟의 고객번호 최댓값을 구하시오.
+select max(ok.custid) as max_custid
+from Order_Kill ok
+join Target t on ok.targetid = t.targetid
+group by ok.targetid
+having count(ok.kid) >= 2;
+
+#4. 고객별로 요청한 타겟의 총 명수와 총 청부비용을 구하시오.
+select ok.custid,
+       count(distinct ok.targetid) as num_targets,
+       sum(t.price) as total_price
+from Order_Kill ok
+join Target t on ok.targetid = t.targetid
+group by ok.custid;
