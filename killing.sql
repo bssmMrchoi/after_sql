@@ -63,3 +63,8 @@ select * from Target;
 select * from Order_Kill;
 
 
+
+select custid from Order_Kill where how like '야스오%';
+select tname from Target where price >=20000;
+select why from Customer where custid>400;
+
