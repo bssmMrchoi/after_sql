@@ -73,5 +73,18 @@ select custid from Order_Kill where how like '야스오%';
 select tname from Target where price >= 20000;
 #4고객id가 400이 넘는 고객의 사유를 구하시오.
 select why from Customer where custid > 400
+#2. 살인 청부 가격이 20000원 이상인 타겟의 고객이름을 구하시오
+select *
+from Target t join Order_Kill ok on t.targetid = ok.targetid join Customer c on ok.custid
+where t.price >= 20000;
+
+#1. target의 가격이 비싼 순으로 정렬하여 검색하세요.
+select tname, price from Target order by price;
+#2. 날짜와 청부 이유를 내림차순으로 정렬한 결과를 출력하시오
+select d_day, why from Order_Kill o join Customer c on o.custid=c.custid order by why;
+#3. 살해방법을 날짜순(오름차순)으로 정렬한 결과를 출력하시오.
+select * from Order_Kill order by how desc;
+#4. 타겟을 이름순으로 검색하시오.
+select tname from Target order by tname;
 
 
