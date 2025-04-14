@@ -67,3 +67,10 @@ select * from Order_Kill where how like '야스오 %'
 select * from Target where price > 20000
 select * from Customer where custid > 400
 
+--1. 청구비용이 가장 비싼 것과 가장 싼 가격을 검색하시오.
+--2. 가장 큰 현상금을 가진 타겟의 고객의 이름과 이유를 구하시오
+--3. 고객번호가 471인 고객의 타겟의 가격 평균
+--4. 청구비용이 가장 싼 타겟을 찾으시오.
+select max(price) as 'max', min(price) as 'min' from Target;
+select avg(price) as 'Average of 471' from Target t on t.targetid = o.targetid join Order_Kill ok on ok.custid join Customer C on C.custid = 471;
+
