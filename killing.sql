@@ -61,9 +61,26 @@ select * from Target;
 select * from Order_Kill;
 
 --1. 살해 방법이 ‘야스오’로 시작하는 행의 고객 id를 구하시오.
+--2 살인 청부 가격이 20000원 이상인 타겟의 고객이름을 구하시오
 --3. 가격이 20000원 이상인 타겟의 이름을 구하시오.
 --4. 고객id가 400이 넘는 고객의 사유를 구하시오.
-select * from Order_Kill where how like '야스오 %'
+select custid from Order_Kill where how like '야스오 %'
+SELECT C.cname FROM Customer C JOIN Order_Kill O ON C.custid = O.custid JOIN Target T ON O.targetid = T.targetid WHERE T.price >= 20000;
 select * from Target where price > 20000
 select * from Customer where custid > 400
 
+--1. target의 가격이 비싼 순으로 정렬하여 검색하세요.
+--2. 날짜와 청부 이유를 내림차순으로 정렬한 결과를 출력하시오
+--3. 살해방법을 날짜순(오름차순)으로 정렬한 결과를 출력하시오.
+--4. 타겟을 이름순으로 검색하시오.
+select * from Target order by price
+select d_day, why from Target T JOIN Order_Kill O ON T.targetid = O.targetid JOIN Customer C ON C.custid = O.custid order by d_day desc
+select d_day, how from Order_Kill order by d_day
+select tname from Target order by tname
+
+--1. 청구비용이 가장 비싼 것과 가장 싼 가격을 검색하시오.
+--2. 가장 큰 현상금을 가진 타겟의 고객의 이름과 이유를 구하시오
+--3. 고객번호가 471인 고객의 타겟의 가격 평균
+--4. 청구비용이 가장 싼 타겟을 찾으시오.
+select max(price) as 'max', min(price) as 'min' from Target;
+select avg(price) as 'Average of 471' from Target t on t.targetid = o.targetid join Order_Kill ok on ok.custid join Customer C on C.custid = 471;
