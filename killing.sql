@@ -59,3 +59,11 @@ insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 select * from Customer;
 select * from Target;
 select * from Order_Kill;
+
+--1. 살해 방법이 ‘야스오’로 시작하는 행의 고객 id를 구하시오.
+--3. 가격이 20000원 이상인 타겟의 이름을 구하시오.
+--4. 고객id가 400이 넘는 고객의 사유를 구하시오.
+select * from Order_Kill where how like '야스오 %'
+select * from Target where price > 20000
+select * from Customer where custid > 400
+
