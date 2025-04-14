@@ -121,5 +121,3 @@ join Customer c on ok.custid = c.custid group by ok.targetid having count(ok.tar
 select c.custid, count(c.custid), sum(t.price) from Target t join Order_Kill ok on t.targetid = ok.targetid
 join Customer c on ok.custid = c.custid group by c.custid, t.price;
 
-
-
