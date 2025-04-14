@@ -56,3 +56,7 @@ select * from Target;
 select * from Order_Kill;
 
 
+1. select custid from Order_Kill where how like '야스오%';
+3. select tname from Target where price >= 20000;
+4. select why from Customer where custid >= 400;
+
