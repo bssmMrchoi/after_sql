@@ -83,3 +83,13 @@ select avg(t.price) from Target t join Order_Kill ok on t.targetid=ok.targetid j
 where c.custid ='471';
 #청구비용이 가장 싼 타겟을 찾으시오.
 select tname from Target where price = (select min(price) from Target);
+#고객별 청부한 타겟의 수를 검색하시오.
+select custid,count(*) from Order_Kill group by custid;
+#고객별 청부 금액이 50000원을 초과하는 청부를 몇번 넣었는지, 50000원 초과 청부의 가격 총 합을 구하시오
+select c.custid,t.price,count(c.custid),sum(t.price) from Customer c join Order_Kill ok on c.custid=ok.custid join Target t on t.targetid=ok.targetid
+group by c.custid,t.price
+having t.price > 50000;
+#살인 청부를 받은 횟수가 2번 이상인 타겟의 고객번호 최댓값을 구하시오.
+select targetid from Order_Kill group by targetid having count(*)>=2;
+#고객별로 요청한 타겟의 총 명수와 총 청부비용을 구하시오.
+select custid, count(*), sum(t.price) from Order_Kill ok join Target t on ok.targetid = t.targetid group by ok.custid;
