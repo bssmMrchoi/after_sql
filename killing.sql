@@ -55,6 +55,14 @@ select * from Customer;
 select * from Target;
 select * from Order_Kill;
 
+#1번문제
+select custid from Order_Kill where how like '야스오%';
+#3번문제
+select tname from Target where price >=20000;
+#4번문제
+select why from Customer where custid > 500;
+
+
 
 
 
