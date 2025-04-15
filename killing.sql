@@ -81,7 +81,11 @@ select avg(t.price) from Order_Kill o join Target t on o.targetid=t.targetid whe
 select * from Target where price= (select min(price) from Target);
 
 
-
+select cname, count(*) as tergetcnt from Customer c join Order_Kill o on c.custid=o.custid group by cname;
+select c.custid, count(*), sum(t.price) from Customer c join Order_Kill o on c.custid = o.custid join Target t on o.targetid=t.targetid
+group by c.custid,t.price having t.price>50000;
+select max(custid) from Order_Kill group by targetid having count(*)>=2;
+select count(*), sum(t.price) from Target t join Order_Kill o on t.targetid=o.targetid group by o.custid;
 
 
 
