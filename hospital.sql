@@ -83,3 +83,4 @@ group by h.hospital_id order by cnt asc limit 1;
 select h.name, count(distinct p.patient_id)
 from patient p join appointment a on p.patient_id=a.patient_id join hospital h on a.hospital_id=h.hospital_id
 group by h.name;
+
