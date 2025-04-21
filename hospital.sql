@@ -78,3 +78,17 @@ select h.name, a.reservation_datetime, p.name
 from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
 where symptoms='피부 트러블'
 group by h.name, a.reservation_datetime, p.name;
+
+
+#12. 각 병원별로 가장 나이가 많은 환자의 나이를 출력하시오.
+select h.name, max(p.age)
+from appointment a
+join patient p on a.patient_id = p.patient_id
+join hospital h on a.hospital_id = h.hospital_id
+group by h.name;
+#14. 예약이 한 건도 없는 병원의 ID와 이름을 출력하시오.
+
+select h.hospital_id, h.name
+from hospital h
+left join appointment a on h.hospital_id = a.hospital_id
+where a.appointment_id is NULL;
