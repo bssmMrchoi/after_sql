@@ -53,11 +53,6 @@ select * from patient;
 
 select * from appointment;
 
-
-desc hospital;
-desc patient;
-desc appointment;
-
 select h.name, h.department, count(*)
 from hospital h join appointment a on h.hospital_id=a.hospital_id
 group by h.name, h.department
