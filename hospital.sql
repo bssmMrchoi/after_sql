@@ -74,6 +74,10 @@ group by p.name;
 #8. 예약이 두 번 이상인 환자 이름과 예약 건수를 출력하시오.
 #9. 병원별 평균 예약 건수보다 많은 예약을 가진 병원만 출력하시오.
 #10. 예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
+select h.name, a.reservation_datetime
+from hospital h join appointment a on h.hospital_id = a.hospital_id
+patient p join appointment a on p.patient_id = a.hospital_id
+where p.symptoms = '피부 트러블';
 #11. 진료과별 예약 수와 평균 예약자 나이를 출력하되, 30세 이상 환자만 포함하시오.
 #12. 각 병원별로 가장 나이가 많은 환자의 나이를 출력하시오.
 #13. ‘서울 중앙 병원’에 예약한 환자 목록을 예약일시 내림차순으로 출력하시오.
