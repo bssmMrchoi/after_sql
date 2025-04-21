@@ -1,5 +1,7 @@
 use study_1_2;
 
+
+
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
     name VARCHAR(100),             -- 병원명
@@ -49,3 +51,15 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+
+select h.name, h.department, count(*)
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.name, h.department
+having count(*) >= 1
+order by count(*) desc;
+
+select h.name, count(*)
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where p.age >= 30
+group by h.name;
