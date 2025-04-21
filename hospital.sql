@@ -75,16 +75,11 @@ join hospital h on a.hospital_id=h.hospital_id group by h.name, p.age having max
 select h.hospital_id, h.name from hospital h left join appointment a on h.hospital_id=a.hospital_id
 where a.hospital_id is null;
 
+# 5번 문제
+select h.hospital_id, h.name, count(*) as cnt from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.hospital_id order by cnt asc limit 1;
 
-
-
-
-
-
-
-
-
-
-
-
-
+# 15번 문제 병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select h.name, count(distinct p.patient_id)
+from patient p join appointment a on p.patient_id=a.patient_id join hospital h on a.hospital_id=h.hospital_id
+group by h.name;
