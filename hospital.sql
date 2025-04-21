@@ -75,8 +75,9 @@ join patient p on p.patient_id = a.patient_id
 group by p.age, h.name
 having p.age >= 30;
 # 7. 환자별 가장 최근 예약 정보를 출력하시오.
-select * from patient p join appointment a on p.patient_id = a.patient_id
-order by a.reservation_datetime limit 1;
+select p.name, a.reservation_datetime from patient p join appointment a on p.patient_id = a.patient_id
+group by p.name, a.reservation_datetime
+order by a.reservation_datetime;
 # 8. 예약이 두 번 이상인 환자 이름과 예약 건수를 출력하시오.
 select p.name, count(*) from patient p join appointment a on p.patient_id = a.patient_id
 group by p.name
