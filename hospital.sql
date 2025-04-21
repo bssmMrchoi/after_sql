@@ -65,4 +65,11 @@ select p.name,max(a.reservation_datetime) from patient p join appointment a on p
 select p.name, h.name, a.reservation_datetime from patient p join appointment a on p.patient_id=a.patient_id join hospital h on a.hospital_id=h.hospital_id
 where p.symptoms='피부 트러블' group by p.name, h.name, a.reservation_datetime
 
+select h.name, max(p.age) from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+group by h.name;
+
+select h.hospital_id, h.name from hospital h left join appointment a on h.hospital_id=a.hospital_id
+where a.appointment_id is null;
+
+
 
