@@ -72,4 +72,9 @@ group by p.name, a.reservation_datetime order by a.reservation_datetime;
 #10. 예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
 select h.name, a.reservation_datetime
 from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
-where symptoms = '피부 트러블';
+where symptoms='피부 트러블';
+
+select h.name, a.reservation_datetime, p.name
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where symptoms='피부 트러블'
+group by h.name, a.reservation_datetime, p.name;
