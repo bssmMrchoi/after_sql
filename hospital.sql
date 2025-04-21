@@ -5,7 +5,7 @@ CREATE TABLE hospital (
     name VARCHAR(100),             -- 병원명
     department VARCHAR(100),       -- 진료과
     director VARCHAR(100),         -- 병원장
-    capacity INT                   -- 총 수
+    capacity INT                   -- 층 수
 );
 
 CREATE TABLE patient (
@@ -49,3 +49,14 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+# 예약이 가장 적은 병원의 ID, 이름, 예약 건수를 출력하시오.
+select h.hospital_id, h.name, count(*) as cnt
+from hospital h join appointment a on h.hospital_id = a.hospital_id
+group by h.hospital_id, h.name
+order by cnt asc limit 1;
+
+# 병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select h.name, count(distinct a.patient_id)
+from hospital h join appointment a on h.hospital_id = a.hospital_id
+group by h.name;
