@@ -5,7 +5,7 @@ CREATE TABLE hospital (
     name VARCHAR(100),             -- 병원명
     department VARCHAR(100),       -- 진료과
     director VARCHAR(100),         -- 병원장
-    capacity INT                   -- 총 수
+    capacity INT                   -- 층 수
 );
 
 CREATE TABLE patient (
@@ -49,3 +49,6 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+#10. 예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
+select h.name, a.reservation_datetime from patient p join appointment a on p.patient_id = a.patient_id join hospital h on h.hospital_id = a.hospital_id where p.symptoms = '피부 트러블';
