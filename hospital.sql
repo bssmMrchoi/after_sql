@@ -5,7 +5,7 @@ CREATE TABLE hospital (
     name VARCHAR(100),             -- 병원명
     department VARCHAR(100),       -- 진료과
     director VARCHAR(100),         -- 병원장
-    capacity INT                   -- 총 수
+    capacity INT                   -- 층 수
 );
 
 CREATE TABLE patient (
@@ -49,3 +49,8 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+# 환자별 가장 최근 예약 정보를 출력하시오.
+select p.name, max(a.reservation_datetime)
+from hospital h join appointment a on h.hospital_id = a.hospital_id join patient p on a.patient_id = p.patient_id
+group by p.name;
