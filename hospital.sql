@@ -1,6 +1,3 @@
-
-
-
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
     name VARCHAR(100),             -- 병원명
@@ -89,5 +86,17 @@ group by h.name;
 select hospital_id, name
 from hospital
 where hospital_id not in (
-    select hospital_id from appointment
-);
+    select hospital_id from appointment);
+
+--15. 병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select  hospital_id, count(distinct patient_id)
+from appointment
+group by hospital_id;
+
+drop TABLE appointment;
+
+--예약이 가장 적은 병원의 ID, 이름, 예약 건수를 출력하시오.
+select h.hospital_id, h.name, count(*) as cnt
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.hospital_id, h.name
+order by cnt asc limit;
