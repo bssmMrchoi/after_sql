@@ -1,5 +1,7 @@
 use study_1_2;
 
+
+
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
     name VARCHAR(100),             -- 병원명
@@ -49,3 +51,30 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+
+select h.name, h.department, count(*)
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.name, h.department
+having count(*) >= 1
+order by count(*) desc;
+
+select h.name, count(*)
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where p.age >= 30
+group by h.name;
+
+select p.name, max(a.reservation_datetime)
+from patient p join appointment a on p.patient_id=a.patient_id
+group by p.name, a.reservation_datetime order by a.reservation_datetime;
+
+
+#10. 예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
+select h.name, a.reservation_datetime
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where symptoms='피부 트러블';
+
+select h.name, a.reservation_datetime, p.name
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where symptoms='피부 트러블'
+group by h.name, a.reservation_datetime, p.name;
