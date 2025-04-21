@@ -63,3 +63,7 @@ select h.name, count(*)
 from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
 where p.age >= 30
 group by h.name;
+
+select p.name, a.reservation_datetime
+from patient p join appointment a on p.patient_id=a.patient_id
+group by p.name, a.reservation_datetime order by a.reservation_datetime;
