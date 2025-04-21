@@ -67,3 +67,8 @@ join patient p on p.patient_id = a.patient_id
 group by h.name,p.age having max(p.age);
 #14.예약이 한 건도 없는 병원의 ID와 이름을 출력하시오.
 select h.hospital_id,h.name from hospital h left join appointment a on h.hospital_id = a.hospital_id where a.hospital_id is null;
+#5.예약이 가장 적은 병원의 ID, 이름, 예약 건수를 출력하시오.
+select h.hospital_id,h.name,count(*) as cnt from hospital h join appointment a on h.hospital_id = a.hospital_id group by h.hospital_id,h.name order by cnt asc limit 1;
+#15.병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select h.name,count(distinct  a.patient_id) from hospital h join appointment a on h.hospital_id = a.hospital_id
+group by h.name
