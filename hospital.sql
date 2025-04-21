@@ -1,5 +1,3 @@
-use study_1_2;
-
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
     name VARCHAR(100),             -- 병원명
@@ -49,3 +47,56 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+----30세 이상 환자들의 예약 건수를 병원별로 구하시오.
+select h.name, count(*)
+from appointment a
+join hospital h on a.hospital_id = h.hospital_id
+join patient p on a.patient_id = p.patient_id
+where p.age >= 30
+group by h.name;
+
+--환자별 가장 최근 예약 정보를 출력하시오.
+select p.name, a.reservation_datetime
+from appointment a
+join patient p on a.patient_id = p.patient_id
+group by p.name, a.reservation_datetime having max(a.reservation_datetime);
+--다른 풀이
+select p.name, max(a.reservation_datetime)
+from appointment a
+join patient p on a.patient_id = p.patient_id
+group by p.name, a.reservation_datetime;
+
+--예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
+select DISTINCT h.name, a.reservation_datetime
+from appointment a
+join hospital h on a.hospital_id = h.hospital_id
+join patient p on a.patient_id = p.patient_id
+where p.symptoms LIKE '%피부 트러블%';
+
+--각 병원별로 가장 나이가 많은 환자의 나이를 출력하시오.
+select h.name, MAX(p.age)
+from appointment a
+join hospital h on a.hospital_id = h.hospital_id
+join patient p on a.patient_id = p.patient_id
+group by h.name;
+
+
+--예약이 한 건도 없는 병원의 ID와 이름을 출력하시오.
+select hospital_id, name
+from hospital
+where hospital_id not in (
+    select hospital_id from appointment);
+
+--15. 병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select  hospital_id, count(distinct patient_id)
+from appointment
+group by hospital_id;
+
+drop TABLE appointment;
+
+--예약이 가장 적은 병원의 ID, 이름, 예약 건수를 출력하시오.
+select h.hospital_id, h.name, count(*) as cnt
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.hospital_id, h.name
+order by cnt asc limit;
