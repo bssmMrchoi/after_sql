@@ -1,4 +1,6 @@
-use study_1_2;
+create database team_1_2;
+
+use team_1_2;
 
 # customer 생성
 create table Customer(
@@ -31,8 +33,10 @@ create table Order_Kill(
 desc Order_Kill;
 
 
+
 insert into Customer values(117, '야스오', '010-1101', '요네에게 누명쓰임요');
 insert into Customer values(917, '도우너 심슨', '010-2911', '부모의 원수');
+
 insert into Customer values(471, '이민길', '010-3812', '애인과의 결별');
 insert into Customer values(999, '농약두봉지', '010-4713', '사기 당함');
 insert into Customer values(340, '안드레아스 강', '010-5614', '트롤로 인한 티어 강등');
@@ -50,5 +54,37 @@ insert into Order_Kill values(4, 999, 200, '2025-09-21', '야스오 콤보(e-q�
 insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 
 select * from Customer;
+
+
+
 select * from Target;
+
+
 select * from Order_Kill;
+
+
+
+select custid from Order_Kill where how like '야스오%';
+select * from Target t join Order_Kill o on t.targetid = o.targetid join Customer c on o.custid=c.custid where t.price>=20000;
+select tname from Target where price >=20000;
+select why from Customer where custid>400;
+
+select * from Target order by price desc;
+select why, d_day from Customer c join Order_Kill o on c.custid=o.custid order by o.d_day desc;
+select how from Order_Kill order by d_day;
+select * from Target order by tname;
+
+select max(price), min(price) from Target;
+select cname, why from Customer c join Order_Kill o on c.custid = o.custid join Target t on o.targetid=t.targetid
+where t.price = (select max(price) from Target);
+select avg(t.price) from Order_Kill o join Target t on o.targetid=t.targetid where o.custid=471;
+select * from Target where price= (select min(price) from Target);
+
+
+
+
+
+
+
+
+
