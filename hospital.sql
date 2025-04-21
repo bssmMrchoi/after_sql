@@ -61,3 +61,4 @@ from appointment a
 join patient p on a.patient_id =p.patient_id
 group by p.name;
 
+
