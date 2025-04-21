@@ -5,7 +5,7 @@ CREATE TABLE hospital (
     name VARCHAR(100),             -- 병원명
     department VARCHAR(100),       -- 진료과
     director VARCHAR(100),         -- 병원장
-    capacity INT                   -- 총 수
+    capacity INT                   -- 층 수
 );
 
 CREATE TABLE patient (
@@ -49,3 +49,14 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+# 각 병원별로 가장 나이가 많은 환자의 나이를 출력하시오.
+select h.name, max(p.age)
+from hospital h join appointment a on h.hospital_id = a.hospital_id
+    join patient p on a.patient_id = p.patient_id
+group by h.name;
+
+# 예약이 한 건도 없는 병원의 ID와 이름을 출력하시오.
+select h.hospital_id, h.name
+from hospital h left join appointment a on h.hospital_id = a.hospital_id
+where a.appointment_id is NULL;
