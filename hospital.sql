@@ -1,4 +1,5 @@
-use study_1_2;
+
+
 
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
@@ -49,3 +50,11 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+----30세 이상 환자들의 예약 건수를 병원별로 구하시오.
+select h.name, count(*)
+from appointment a
+join hospital h on a.hospital_id = h.hospital_id
+join patient p on a.patient_id = p.patient_id
+where p.age >= 30
+group by h.name;
