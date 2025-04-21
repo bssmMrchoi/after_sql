@@ -64,3 +64,15 @@ select p.name, a.reservation_datetime
 from appointment a
 join patient p on a.patient_id = p.patient_id
 group by p.name, a.reservation_datetime having max(a.reservation_datetime);
+--다른 풀이
+select p.name, max(a.reservation_datetime)
+from appointment a
+join patient p on a.patient_id = p.patient_id
+group by p.name, a.reservation_datetime;
+
+--예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
+select DISTINCT h.name, a.reservation_datetime
+from appointment a
+join hospital h on a.hospital_id = h.hospital_id
+join patient p on a.patient_id = p.patient_id
+where p.symptoms LIKE '%피부 트러블%';
