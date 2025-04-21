@@ -46,6 +46,17 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 (4, 104, '2025-04-23 14:00:00'),
 (3, 105, '2025-04-24 13:30:00');
 
-select * from hospital;
-select * from patient;
 select * from appointment;
+select * from patient;
+select * from hospital;
+
+select h.name, h.department, count(*) from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.name, h.department having count(*)>=1 order by count(*) desc;
+
+
+
+select h.name, count(*) from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where age>=30 group by h.name;
+
+
+
