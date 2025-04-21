@@ -50,15 +50,21 @@ select * from hospital;
 select * from patient;
 select * from appointment;
 
+#6번 문제
 select h.name, count(*)
 from hospital h join appointment a on h.hospital_id=a.hospital_id
 join patient p on a.patient_id=p.patient_id
 where p.age>=30
 group by h.name, p.age;
 
+#7번 문제
 select p.name, max(a.reservation_datetime)
 from appointment a
 join patient p on a.patient_id =p.patient_id
 group by p.name;
 
+#10번 문제
+select p.name, h.name a.reservation_datatime
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+join patient p on a.patient_id=p.patient_id where p.symptoms='피부 트러블';
 
