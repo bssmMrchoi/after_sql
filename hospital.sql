@@ -76,3 +76,18 @@ from appointment a
 join hospital h on a.hospital_id = h.hospital_id
 join patient p on a.patient_id = p.patient_id
 where p.symptoms LIKE '%피부 트러블%';
+
+--각 병원별로 가장 나이가 많은 환자의 나이를 출력하시오.
+select h.name, MAX(p.age)
+from appointment a
+join hospital h on a.hospital_id = h.hospital_id
+join patient p on a.patient_id = p.patient_id
+group by h.name;
+
+
+--예약이 한 건도 없는 병원의 ID와 이름을 출력하시오.
+select hospital_id, name
+from hospital
+where hospital_id not in (
+    select hospital_id from appointment
+);
