@@ -48,8 +48,11 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 (3, 105, '2025-04-24 13:30:00');
 
 select * from hospital;
+
 select * from patient;
+
 select * from appointment;
+
 
 desc hospital;
 desc patient;
@@ -74,12 +77,14 @@ on h.hospital_id=a.hospital_id
 where p.age>=30
 group by h.name;
 
-
-
-
-
-
 7. 환자별 가장 최근 예약 정보를 출력하시오.
+select p.name, max(a.reservation_datetime)
+from appointment a join patient p
+on a.patient_id=p.patient_id
+group by p.name
+;
+
+
 8. 예약이 두 번 이상인 환자 이름과 예약 건수를 출력하시오.
 9. 병원별 평균 예약 건수보다 많은 예약을 가진 병원만 출력하시오.
 10. 예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
