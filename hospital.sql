@@ -5,7 +5,7 @@ CREATE TABLE hospital (
     name VARCHAR(100),             -- 병원명
     department VARCHAR(100),       -- 진료과
     director VARCHAR(100),         -- 병원장
-    capacity INT                   -- 총 수
+    capacity INT                   -- 층 수
 );
 
 CREATE TABLE patient (
@@ -49,3 +49,28 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+#병원 이름과 진료과별로 예약 건수가 몇 건인지 구하고, 예약 건수가 1건 이상인
+경우만 출력하되 예약 건수 기준으로 내림차순 정렬하시오.
+#1
+select h.name, h.department, count(*)
+from hospital h join appointment a on h.hospital_id = a.hospital_id
+group by h.name, h.department;
+having count(*) >= 1;
+order by count(*) desc;
+
+
+30세 이상 환자들의 예약 건수를 병원별로 구하시오.
+#6
+select h.name, count(*)
+from hospital h join appointment a on h.hospital_id = a.hospital_id
+join patient p on a.patient_id = p.patient_id
+where p.age >= 30
+group by h.name;
+
+
+
+
+
+
+
