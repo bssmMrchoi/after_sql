@@ -56,10 +56,12 @@ select h.name, h.department, count(*) from hospital h join appointment a on h.ho
 group by h.name, h.department having count(*) >= 1 order by count(*) desc;
 
 #6번 문제
-select h.name, count(appointment_id) from hospital h join appointment a on h.hospital_id=a.hospital_id
+select h.name, count(a.appointment_id) from hospital h join appointment a on h.hospital_id=a.hospital_id
 join patient p on a.patient_id=p.patient_id group by h.name, p.age having p.age >= 30;
 
-
+# 7번 문제
+select p.name,a.reservation_datetime from appointment a join patient p on a.patient_id=p.patient_id group by p.name, a.reservation_datetime
+order by a.reservation_datetime;
 
 
 
