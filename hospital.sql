@@ -78,3 +78,14 @@ having max(p.age);
 #14
 select h.hospital_id,h.name from hospital h left join appointment a on h.hospital_id=a.hospital_id
 where a.hospital_id is null;
+
+#5
+select h.hospital_id ,h.name, count(*) as cnt
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.hospital_id, h.name
+order by cnt asc limit 1;
+
+#15
+select count(distinct a.patient_id),h.name
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.name;
