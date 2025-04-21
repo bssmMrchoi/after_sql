@@ -1,11 +1,12 @@
-use study_1_2;
+use team_1_2;
+
 
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
     name VARCHAR(100),             -- 병원명
     department VARCHAR(100),       -- 진료과
     director VARCHAR(100),         -- 병원장
-    capacity INT                   -- 총 수
+    capacity INT                   -- 층 수
 );
 
 CREATE TABLE patient (
@@ -49,3 +50,37 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+# 1번 문제
+select h.name, h.department, count(*) from hospital h join appointment a on h.hospital_id = a.hospital_id
+group by h.name, h.department having count(*) >= 1 order by count(*) desc;
+
+#6번 문제
+select h.name, count(a.appointment_id) from hospital h join appointment a on h.hospital_id=a.hospital_id
+join patient p on a.patient_id=p.patient_id group by h.name, p.age having p.age >= 30;
+
+# 7번 문제
+select p.name,a.reservation_datetime from appointment a join patient p on a.patient_id=p.patient_id
+group by p.name, a.reservation_datetime having max(a.reservation_datetime);
+
+# 10번 문제
+select p.name, h.name, a.reservation_datetime from hospital h join appointment a on h.hospital_id=a.hospital_id
+join patient p on a.patient_id=p.patient_id where p.symptoms = '피부 트러블';
+
+# 12번 문제
+select h.name, p.age from patient p join appointment a on p.patient_id=a.patient_id
+join hospital h on a.hospital_id=h.hospital_id group by h.name, p.age having max(p.age);
+
+# 14번 문제
+select h.hospital_id, h.name from hospital h left join appointment a on h.hospital_id=a.hospital_id
+where a.hospital_id is null;
+
+# 5번 문제
+select h.hospital_id, h.name, count(*) as cnt from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.hospital_id order by cnt asc limit 1;
+
+# 15번 문제 병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select h.name, count(distinct p.patient_id)
+from patient p join appointment a on p.patient_id=a.patient_id join hospital h on a.hospital_id=h.hospital_id
+group by h.name;
+
