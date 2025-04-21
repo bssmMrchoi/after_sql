@@ -1,4 +1,4 @@
-use study_1_2;
+use team_1_2;
 
 # customer 생성
 create table Customer(
