@@ -85,6 +85,10 @@ having count(*) >= 2;
 select avg(count(*)) from hospital h join appointment a on h.hospital_id = a.hospital_id
 group by a.hospital_id;
 # 10. 예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
+select h.name, a.reservation_datetime from hospital h
+join appointment a on h.hospital_id = a.hospital_id
+join patient p on p.patient_id = a.patient_id
+where p.symptoms = '피부 트러블';
 # 11. 진료과별 예약 수와 평균 예약자 나이를 출력하되, 30세 이상 환자만 포함하시오.
 # 12. 각 병원별로 가장 나이가 많은 환자의 나이를 출력하시오.
 # 13. ‘서울 중앙 병원’에 예약한 환자 목록을 예약일시 내림차순으로 출력하시오.
