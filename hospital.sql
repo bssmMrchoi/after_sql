@@ -50,10 +50,14 @@ select * from hospital;
 select * from patient;
 select * from appointment;
 
-select h.name, count(a.appointment_id)
-from hospital h join appointment a on h.hospital_id=hospital_id
+select h.name, count(*)
+from hospital h join appointment a on h.hospital_id=a.hospital_id
 join patient p on a.patient_id=p.patient_id
-group by h.name, p.age
-having p.age>=30;
+where p.age>=30
+group by h.name, p.age;
 
+select p.name, max(a.reservation_datetime)
+from appointment a
+join patient p on a.patient_id =p.patient_id
+group by p.name;
 
