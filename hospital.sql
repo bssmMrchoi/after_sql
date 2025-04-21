@@ -82,7 +82,3 @@ group by p.name, a.reservation_datetime having max(a.reservation_datetime);
 
 
 
-
-
-
-
