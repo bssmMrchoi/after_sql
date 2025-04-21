@@ -63,7 +63,9 @@ join patient p on a.patient_id=p.patient_id group by h.name, p.age having p.age 
 select p.name,a.reservation_datetime from appointment a join patient p on a.patient_id=p.patient_id
 group by p.name, a.reservation_datetime having max(a.reservation_datetime);
 
-
+# 10번 문제
+select p.name, h.name, a.reservation_datetime from hospital h join appointment a on h.hospital_id=a.hospital_id
+join patient p on a.patient_id=p.patient_id where p.symptoms = '피부 트러블';
 
 
 
