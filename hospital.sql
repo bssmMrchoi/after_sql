@@ -58,3 +58,9 @@ join hospital h on a.hospital_id = h.hospital_id
 join patient p on a.patient_id = p.patient_id
 where p.age >= 30
 group by h.name;
+
+--환자별 가장 최근 예약 정보를 출력하시오.
+select p.name, a.reservation_datetime
+from appointment a
+join patient p on a.patient_id = p.patient_id
+group by p.name, a.reservation_datetime having max(a.reservation_datetime);
