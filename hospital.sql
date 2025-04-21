@@ -68,6 +68,12 @@ from hospital h join appointment a on h.hospital_id = a.hospital_id
 group by h.name, h.department
 having count(*) >= 1;
 # 5. 예약이 가장 적은 병원의 ID, 이름, 예약 건수를 출력하시오.
+select h.hospital_id, h.name, count(*) as cnt
+from hospital h join appointment a on h.hospital_id = a.hospital_id
+join patient p on p.patient_id = a.patient_id
+group by h.hospital_id, h.name
+order by cnt
+limit 1;
 # 6. 30세 이상 환자들의 예약 건수를 병원별로 구하시오.
 select h.name, count(*)
 from hospital h join appointment a on h.hospital_id = a.hospital_id
@@ -102,3 +108,8 @@ left outer join appointment a on h.hospital_id = a.hospital_id
 where appointment_id is null;
 
 # 15. 병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select count(distinct p.name) from patient p
+join appointment a on p.patient_id = a.patient_id
+join hospital h on h.hospital_id = a.hospital_id
+group by h.name
+
