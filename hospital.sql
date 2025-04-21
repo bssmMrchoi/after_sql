@@ -1,5 +1,7 @@
 use study_1_2;
 
+
+
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
     name VARCHAR(100),             -- 병원명
@@ -49,3 +51,56 @@ INSERT INTO appointment (hospital_id, patient_id, reservation_datetime) VALUES
 select * from hospital;
 select * from patient;
 select * from appointment;
+
+
+select h.name, h.department, count(*)
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.name, h.department
+having count(*) >= 1
+order by count(*) desc;
+
+select h.name, count(*)
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where p.age >= 30
+group by h.name;
+
+select p.name, max(a.reservation_datetime)
+from patient p join appointment a on p.patient_id=a.patient_id
+group by p.name, a.reservation_datetime order by a.reservation_datetime;
+
+
+#10. 예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
+select h.name, a.reservation_datetime
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where symptoms='피부 트러블';
+
+select h.name, a.reservation_datetime, p.name
+from hospital h join appointment a on h.hospital_id=a.hospital_id join patient p on a.patient_id=p.patient_id
+where symptoms='피부 트러블'
+group by h.name, a.reservation_datetime, p.name;
+
+
+#12. 각 병원별로 가장 나이가 많은 환자의 나이를 출력하시오.
+select h.name, max(p.age)
+from appointment a
+join patient p on a.patient_id = p.patient_id
+join hospital h on a.hospital_id = h.hospital_id
+group by h.name;
+#14. 예약이 한 건도 없는 병원의 ID와 이름을 출력하시오.
+
+select h.hospital_id, h.name
+from hospital h
+left join appointment a on h.hospital_id = a.hospital_id
+where a.appointment_id is NULL;
+
+
+#5예약이 가장 적은 병원의 ID, 이름, 예약 건수를 출력하시오.
+select h.hospital_id, h.name, count(*) as cnt
+from hospital h join appointment a on h.hospital_id=a.hospital_id
+group by h.hospital_id, h.name
+order by cnt asc limit 1;
+#15병원별 예약된 고유 환자 수를 출력하시오. (같은 환자가 여러 번 예약했어도 1명으로 집계)
+select h.hospital_id, h.name, count(distinct a.patient_id) as 고유_환자수
+from hospital h left join appointment a on h.hospital_id = a.hospital_id
+group by h.hospital_id, h.name
+order by h.hospital_id;
