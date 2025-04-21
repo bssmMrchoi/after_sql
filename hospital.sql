@@ -57,7 +57,7 @@ group by h.name, h.department
 having count(*) >= 1
 order by count(*) desc;
 
-# 30세 이상 환자들의 예약 건수를 병원별로 구하시오.
+# 30세 이상 환자들의 예약 건수를 병원별로 구하시오
 select count(*), h.name
 from hospital h join appointment a on h.hospital_id = a.hospital_id
     join patient p on a.patient_id = p.patient_id
