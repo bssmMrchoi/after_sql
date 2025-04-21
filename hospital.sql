@@ -69,6 +69,3 @@ select p.name, a.reservation_datetime from patient p join appointment a on p.pat
 group by p.name, a.reservation_datetime having max(a.reservation_datetime);
 
 #예약 환자 중 ‘피부 트러블’을 증상으로 입력한 환자의 병원명과 예약일시를 출력하시오.
-select p.symptoms, h.name, a.reservation_datetime from patient p
-join appointment a on p.patient_id=a.patient_id join hospital h on h.hospital_id=a.hospital_id
-where p.symptoms='피부 트러블' group by p.symptoms, h.name, a.reservation_datetime;
