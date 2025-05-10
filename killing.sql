@@ -1,4 +1,6 @@
-use study_1_2;
+create database team_1_2;
+
+use team_1_2;
 
 # customer 생성
 create table Customer(
@@ -31,6 +33,7 @@ create table Order_Kill(
 desc Order_Kill;
 
 
+
 insert into Customer values(117, '야스오', '010-1101', '요네에게 누명쓰임요');
 insert into Customer values(917, '도우너 심슨', '010-2911', '부모의 원수');
 insert into Customer values(471, '이민길', '010-3812', '애인과의 결별');
@@ -52,3 +55,20 @@ insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 select * from Customer;
 select * from Target;
 select * from Order_Kill;
+
+# 집계함수
+
+# 1. 청구비용이 가장 비싼 것과 가장 싼 가격을 검색하시오.
+select max(price), min(price) from `Target`;
+# 2. 가장 큰 현상금을 가진 타겟의 고객의 이름과 이유를 구하시오
+select c.cname, c.why
+from Customer c join Order_Kill OK on c.custid = OK.custid
+    join Target T on OK.targetid = T.targetid
+where T.price = (select max(price) from Target);
+# 3. 고객번호가 471인 고객의 타겟의 가격 평균
+select avg(price)
+from `Target` t join `Order_Kill` ok on t.targetid = ok.targetid
+where ok.custid = 471;
+# 4. 청구비용이 가장 싼 타겟을 찾으시오.
+select * from `Target` where price = (select min(price) from Target);
+
