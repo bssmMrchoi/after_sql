@@ -1,4 +1,6 @@
-use study_1_2;
+create database team_1_2;
+
+use team_1_2;
 
 # customer 생성
 create table Customer(
@@ -31,6 +33,7 @@ create table Order_Kill(
 desc Order_Kill;
 
 
+
 insert into Customer values(117, '야스오', '010-1101', '요네에게 누명쓰임요');
 insert into Customer values(917, '도우너 심슨', '010-2911', '부모의 원수');
 insert into Customer values(471, '이민길', '010-3812', '애인과의 결별');
@@ -52,3 +55,21 @@ insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 select * from Customer;
 select * from Target;
 select * from Order_Kill;
+
+# group by
+
+# 1. 고객별 청부한 타겟의 수를 검색하시오.
+select count(target)
+# 2. 고객별 청부 금액이 50000원을 초과하는 청부를 몇번 넣었는지, 50000원 초과 청부의 가격 총 합을 구하시오
+select c.custid, T.price, count(c.custid), sum(T.price)
+from `Customer` c join `Order_Kill` OK on c.custid = OK.custid join `Target` T on OK.targetid = T.targetid
+group by c.custid, T.price
+having T.price > 50000;
+# 3. 살인 청부를 받은 횟수가 2번 이상인 타겟의 고객번호 최댓값을 구하시오.
+select max(custid)
+from `Order_Kill`
+where targetid in (select targetid from Order_Kill group by targetid having COUNT(*)>=2);
+# 4. 고객별로 요청한 타겟의 총 명수와 총 청부비용을 구하시오.
+select custid, count(*), sum(T.price)
+from `Order_Kill`o join `Target`T on o.targetid = T.targetid
+group by o.custid;
