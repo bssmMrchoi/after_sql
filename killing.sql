@@ -1,12 +1,13 @@
-use study_1_2;
+use team_1_2;
 
-# customer 생성
 create table Customer(
+
 	custid int primary key,
 	cname varchar(10) not null,
 	phone varchar(8),
 	why varchar(30)
 );
+
 desc Customer;
 #Target
 create table Target(
@@ -52,3 +53,71 @@ insert into Order_Kill values(5, 471, 400, '2025-11-13', '저격');
 select * from Customer;
 select * from Target;
 select * from Order_Kill;
+select * from Customer;
+
+# 1. 살해 방법이 야스오로 시작하는 행의 고객 id 검색
+select custid from Order_Kill where how like '야스오%';
+
+# 3. 가격이 20000원 이상인 타겟의 이름을 구하시오.
+select tname from Target where price > 20000;
+
+# 4. 고객 id가 400이 넘는 고객의 사유를 구하시오.
+select why from Customer where custid > 400;
+
+# 2.살인 청부 가격이 20000원 이상인 타겟의 고객이름을 구하시오
+select tname
+from Target t join Order_Kill ok on
+t.targetid = ok.targetid join Customer c on ok.custid = c.custid
+where t.price >= 20000;
+
+
+
+# 1. target의 가격이 비싼 순으로 정렬하시오.
+select * from Target order by price desc;
+
+#2 . 날짜와 청부 이유를 내림차순으로 정렬하시오.
+select d_day, why
+from Order_Kill ok join Customer c on ok.custid = c.custid order by d_day;
+
+# 3. 살해방법을 날짜순으로 정렬하시오.
+select how from Order_Kill order by d_day;
+
+# 4. 타겟을 이름순으로 검색하시오.
+select * from Target order by tname;
+
+
+
+# 1. 청구비용이 가장 비싼 것과 싼 것을 검색하시오.
+select max(price), min(price) from Target;
+
+# 2. 가장 큰 청구비용을 가진 타겟의 고객이름과 이유를 구하시오.
+select c.cname, c.why from Customer c join Order_Kill ok on c.custid = ok.custid join Target t on ok.targetid = t.targetid
+where t.price in (select max(price) from Target);
+
+
+# 3. 고객번호 471인 타겟의 가격 평균
+select avg(price) from Target t join Order_Kill ok on t.targetid = ok.targetid join Customer c ok.custid = c.custid
+where custid = 471;
+
+
+# 4. 청구비용이 가장 싼 타겟
+select * from Target where price in (select min(price) from Target);
+
+# 1.고객별 청부한 타겟의 수를 검색하시오.
+select cname,
+count(ok.custid) from Customer c join Order_Kill ok on c.custid = ok.custid group by ok.custid;
+
+# 2.고객별 청부 금액이 50000원을 초과하는 청부를 몇번 넣었는지, 50000원 초과 청부의 가격 총 합을 구하시오
+select c.cname,
+count(*), sum(t.price)
+from Customer c join Order_Kill ok on c.custid = ok.custid join Target t on ok.targetid = t.targetid
+group by c.custid, t.price having t.price > 50000;
+
+# 3.살인 청부를 받은 횟수가 2번 이상인 타겟의 고객번호 최댓값을 구하시오.
+select max(c.custid) from Target t join Order_Kill ok on t.targetid = ok.targetid
+join Customer c on ok.custid = c.custid group by ok.targetid having count(ok.targetid) >= 2;
+
+# 4. 고객별로 요청한 타겟의 총 명수와 총 청부비용을 구하시오.
+select c.custid, count(c.custid), sum(t.price) from Target t join Order_Kill ok on t.targetid = ok.targetid
+join Customer c on ok.custid = c.custid group by c.custid, t.price;
+
