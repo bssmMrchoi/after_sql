@@ -386,3 +386,5 @@ where (`RCount`>=100) and( RRNumber='RR0001' or RRNumber='RR0002')
 select EName,RNumber,EAddr
 from `tEmployee`
 where (RNumber='R0001' or RNumber='R0002' or RNumber='R0003') and ( not RNumber='D1001')
+
+
