@@ -1,4 +1,4 @@
-use study_sql;
+use employee;
 
 insert into tDepartment values('D1001','문구생산부');
 insert into tDepartment values('D2001','가구생산부');
@@ -303,7 +303,7 @@ insert into tOrder values('O5011','C5002','P5013','2021-03-18 14:55:10');
 insert into tOrder values('O5012','C5003','P5012','2021-05-27 17:24:10');
 insert into tOrder values('O5013','C5004','P5011','2021-07-07 18:10:43');
 
--- tReturn(RNumber, ONumber, RCount, RRNumber, RDate)
+
 insert into tReturn values('R1001','O1002',5,'RR0001','2022-01-03 13:32:07'); -- 문구
 insert into tReturn values('R1002','O1007',700,'RR0004','2022-01-03 15:17:47'); -- 문구
 insert into tReturn values('R1003','O1009',754,'RR0002','2022-01-03 16:22:16'); -- 문구
@@ -320,3 +320,4 @@ insert into tReturn values('R4004','O4002',9,'RR0001','2022-01-13 13:25:53'); --
 insert into tReturn values('R5001','O5002',5,'RR0001','2022-01-07 10:53:05'); -- 음료
 insert into tReturn values('R5002','O5003',872,'RR0004','2022-01-20 10:53:05'); -- 음료
 insert into tReturn values('R5003','O5004',1212,'RR0002','2022-01-29 10:53:05'); -- 음료
+
