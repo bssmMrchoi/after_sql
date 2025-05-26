@@ -350,5 +350,5 @@ select EName,ERRN from temployee where DNumber='D4001' and RNumber='R0001';
 select IName,Price from titem where 500<=Price and Price<=1500 and (INumber='I1001' or INumber='I1002' or INumber='I1003');
 #15번
 select RNumber,RDate from treturn where RCount >=100 and (RRNumber='RR0001' or RRNumber='RR0002');
-#16번ㅇ
+#16번
 select EName,RNumber,EAddr from temployee where (RNumber = 'R0001' or RNumber = 'R0002' or RNumber = 'R0003') and DNumber!='D1001';
