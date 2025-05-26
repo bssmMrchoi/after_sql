@@ -1,4 +1,93 @@
-use study_sql;
+create database employee;
+
+use employee;
+
+CREATE TABLE tEmployee (
+    ENumber VARCHAR(255) PRIMARY KEY,
+    DNumber VARCHAR(255),
+    RNumber VARCHAR(255),
+    EName VARCHAR(255),
+    ERRN VARCHAR(255),
+    EAddr VARCHAR(255),
+    StartDate DATETIME,
+    ResignationDate DATETIME,
+    FOREIGN KEY (DNumber) REFERENCES tDepartment(DNumber),
+    FOREIGN KEY (RNumber) REFERENCES tRank(RNumber)
+);
+
+
+
+CREATE TABLE tProduction (
+    PNumber VARCHAR(255) PRIMARY KEY ,
+    ENumber VARCHAR(255),
+    INumber VARCHAR(255),
+    PCount INT,
+    PDate DATETIME,
+    FOREIGN KEY (ENumber) REFERENCES tEmployee(ENumber),
+    FOREIGN KEY (INumber) REFERENCES tItem(INumber)
+);
+
+
+
+CREATE TABLE tOrder (
+    ONumber VARCHAR(255) PRIMARY KEY,
+    CNumber VARCHAR(255),
+    PNumber VARCHAR(255),
+    ODate DATETIME,
+    FOREIGN KEY (PNumber) REFERENCES tProduction(PNumber),
+    FOREIGN KEY (CNumber) REFERENCES tCustomer(CNumber)
+);
+
+
+
+CREATE TABLE tReturn (
+    RNumber VARCHAR(255) PRIMARY KEY,
+    ONumber VARCHAR(255),
+    RCount INT,
+    RRNumber VARCHAR(255),
+    RDate DATETIME,
+    FOREIGN KEY (RRNumber) REFERENCES tReturnReason(RRNumber),
+    FOREIGN KEY (ONumber) REFERENCES tOrder(ONumber)
+);
+
+
+
+CREATE TABLE tCustomer (
+    CNumber VARCHAR(255) PRIMARY KEY,
+    CName VARCHAR(255),
+    CAddr VARCHAR(255),
+    ContractDate DATETIME
+);
+
+
+
+CREATE TABLE tItem (
+    INumber VARCHAR(255) PRIMARY KEY,
+    IName VARCHAR(255),
+    Price INT,
+    RegisterDate DATETIME
+);
+
+
+
+CREATE TABLE tReturnReason (
+    RRNumber VARCHAR(255) PRIMARY KEY,
+    RReason VARCHAR(255)
+);
+
+
+
+CREATE TABLE tRank (
+    RNumber VARCHAR(255) PRIMARY KEY,
+    RName VARCHAR(255)
+);
+
+
+
+CREATE TABLE tDepartment (
+    DNumber VARCHAR(255) PRIMARY KEY,
+    DName VARCHAR(255)
+);
 
 insert into tDepartment values('D1001','문구생산부');
 insert into tDepartment values('D2001','가구생산부');
