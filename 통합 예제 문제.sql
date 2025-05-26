@@ -70,5 +70,5 @@ select EName,RNumber,EAddr from tEmployee
 where RNumber like 'R0001' or 'R0002' or 'R0003'
 order by EName like not 'D1001';
 
-#
+
 
