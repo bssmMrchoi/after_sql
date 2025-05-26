@@ -57,3 +57,4 @@ select ename, rnumber, EAddr
 from tEmployee
 where rnumber in ('R0001', 'R0002', 'R0003')
 and dnumber <> 'D1001';
+--.
