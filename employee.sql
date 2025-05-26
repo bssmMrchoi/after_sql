@@ -442,4 +442,3 @@ select RNumber, RDate from tReturn where (RCount >= 100) and (RRNumber like 'RR0
 select EName, RNumber, EAddr from tEmployee where (RNumber like 'R0001' or RNumber like 'R0002' or RNumber like 'R0003') and DNumber not like 'D1001';
 
 
-
