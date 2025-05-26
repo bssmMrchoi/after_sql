@@ -413,13 +413,13 @@ select DName from tDepartment where DNumber like 'D4001';
 select IName, Price from tItem where not (Price >= 500 and Price <= 1000);
 
 --7. 2010-05-01 이전에 입사한 직원의 직급코드, 이름, 주소, 입사일 출력하되, 입사일을 기준으로 오름차순으로 정렬하라. - to_date(’2010-05-01’)
-select RNumber, EName, EAddr, StartDate from tEmployee order by StartDate where StartDate < '2010-05-01';
+select RNumber, EName, EAddr, StartDate from tEmployee order by StartDate where StartDate <= '2010-05-01';
 
 --8. 부서 코드가 ‘D2001’, ‘D4001’ 에 속하는 모든 직원의 이름과 부서 코드를 출력하되, 이름을 기준으로 내림차순으로 정렬하라.(desc)
 select EName, DNumber from tEmployee where DNumber like 'D2001' or DNumber like 'D4001' order by EName desc;
 
 --9. 부서 코드가 ‘D2001’, ‘D4001’ 에 속하는 모든 직원 중 입사일이 ‘2010-05-01’ 이전에 입사한 직원의 이름과 부서 코드, 입사일을 출력하라.
-select EName, DNumber, StartDate from tEmployee where (DNumber like 'D2001' or DNumber like 'D4001') and (StartDate < '2010-05-01');
+select EName, DNumber, StartDate from tEmployee where (DNumber like 'D2001' or DNumber like 'D4001') and (StartDate <= '2010-05-01');
 
 --10. 부서 코드가 없는 직원의 이름과 직급코드를 출력하라.
 select EName, RNumber from tEmployee where DNumber is null;
