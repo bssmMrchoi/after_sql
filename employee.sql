@@ -138,7 +138,6 @@ insert into torder values('O1005', 'C1005', 'P1007', '2021-01-27 11:13:08');
 insert into torder values('O1006', 'C1002', 'P1009', '2021-01-31 14:31:22');
 insert into torder values('O1007', 'C1003', 'P1008', '2021-02-06 16:42:09');
 
-
 insert into treturn values('R1001', 'O1002', 5, 'RR0001', '2022-01-03 13:32:07');
 insert into treturn values('R1002', 'O1007', 700, 'RR0004', '2022-01-03 15:17:47');
 insert into treturn values('R1003', 'O1009', 210, 'RR0002', '2022-01-03 16:22:16');
