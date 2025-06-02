@@ -17,3 +17,5 @@ select DNumber,count(*) from tEmployee where DNumber is not null group by DNumbe
 select ENumber,count(*),avg(PCount) from tProduction where PDate>='2020-03-01' and  PDate<'2020-04-01' order by avg(PCount) desc;
 select ONumber,sum(RCount) from tReturn group by ONumber having sum(RCount)>=500 order by sum(RCount) desc;
 select INumber,count(*) from tProduction group by INumber having count(*)>=3 order by INumber;  
+
+
