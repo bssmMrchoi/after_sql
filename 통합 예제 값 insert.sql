@@ -1,4 +1,75 @@
-use study_sql;
+use employee;
+
+create table tDepartment(
+DNumber varchar(255) primary key,
+DName varchar(255)
+);
+
+create table tRank(
+RNumber varchar(255) primary key,
+RName varchar(255)
+);
+
+create table tEmployee(
+ENumber varchar(255) primary key,
+DNumber varchar(255),
+RNumber varchar(255),
+EName varchar(255),
+ERRN varchar(255),
+EAddr varchar(255),
+StartDate datetime,
+ResignationDate datetime,
+foreign key(DNumber) references tDepartment(DNumber),
+foreign key(RNumber) references tRank(RNumber)
+);
+
+create table tItem(
+INumber varchar(255) primary key,
+IName varchar(255),
+Price int,
+RegisterDate datetime
+);
+
+create table tProduction(
+PNumber varchar(255) primary key,
+ENumber varchar(255),
+INumber varchar(255),
+PCount int,
+PDate datetime,
+foreign key(ENumber) references tEmployee(ENumber),
+foreign key(INumber) references tItem(INumber)
+);
+
+create table tCustomer(
+CNumber varchar(255) primary key,
+CName varchar(255),
+CAddr varchar(255),
+ContractDate datetime
+);
+
+create table tOrder(
+ONumber varchar(255) primary key,
+CNumber varchar(255),
+PNumber varchar(255),
+ODate datetime,
+foreign key(CNumber) references tCustomer(CNumber),
+foreign key(PNumber) references tProduction(PNumber)
+);
+
+create table tReturnReason(
+RRNumber varchar(255) primary key,
+RReason varchar(255)
+);
+
+create table tReturn(
+RNumber varchar(255) primary key,
+ONumber varchar(255),
+RCount int,
+RRNumber varchar(255),
+RDate datetime,
+foreign key(RRNumber) references tReturnReason(RRNumber),
+foreign key(ONumber) references tOrder(ONumber)
+);
 
 insert into tDepartment values('D1001','문구생산부');
 insert into tDepartment values('D2001','가구생산부');
