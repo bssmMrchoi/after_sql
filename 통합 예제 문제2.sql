@@ -28,7 +28,6 @@ WHERE PNUMBER
 LIKE 'P2%'
 GROUP BY `CNumber`;
 
-
 -- 5. 제품별 최저 생산량이 1000 이상인 제품의 제품번호와 최저 생산량 출력
 SELECT INumber , MIN(PCount)
 FROM tProduction
