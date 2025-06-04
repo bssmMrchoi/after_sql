@@ -1,6 +1,5 @@
 use employee;
 
-
 --1. 부서 테이블의 모든 데이터를 출력하라.
 select * from tDepartment;
 
