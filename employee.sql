@@ -8,6 +8,7 @@ insert into tDepartment values('D2001','가구생산부');
 insert into tDepartment values('D3001','악세사리생산부');
 insert into tDepartment values('D4001','전자기기생산부');
 insert into tDepartment values('D5001','음료생산부');
+select * from `tDepartment`
 
 insert into tRank values('R0001','사원');
 insert into tRank values('R0002','주임');
@@ -19,11 +20,13 @@ insert into tRank values('R0007','이사');
 insert into tRank values('R0008','상무');
 insert into tRank values('R0009','전무');
 insert into tRank values('R0010','사장');
+select * from `tRank`
 
 insert into tReturnReason values('RR0001','불량');
 insert into tReturnReason values('RR0002','단순변심');
 insert into tReturnReason values('RR0003','환불');
 insert into tReturnReason values('RR0004','배송오류');
+select * from `tReturnReason`
 
 insert into tItem values('I1001','가위',600,'2019-01-02 14:32:23');
 insert into tItem values('I1002','풀',500,'2019-01-13 15:33:23');
@@ -50,6 +53,7 @@ insert into tItem values('I5002','주스',6000,'2019-09-27 15:43:23');
 insert into tItem values('I5003','전통차',6000,'2019-10-15 16:14:02');
 insert into tItem values('I5004','탄산음료',6000,'2019-11-21 17:06:52');
 insert into tItem values('I5005','홍차',6000,'2019-12-22 18:54:32');
+select * from tItem
 
 -- tCustomer(CNumber, CName, CAddr, CPhone, ContractDate)
 insert into tCustomer values('C1001','대한문방구','서울시 강남구','2019-01-23 13:32:12'); -- 문구
@@ -77,6 +81,7 @@ insert into tCustomer values('C5002','시원한음료','울산시 동구','2019-
 insert into tCustomer values('C5003','달달음료','부산시 북구','2019-10-01 16:13:51');
 insert into tCustomer values('C5004','세븐음료','서울시 강동구','2019-11-23 17:34:52');
 insert into tCustomer values('C5005','더함음료','서울시 도봉구','2019-12-15 18:31:37');
+select * f
 
 -- tEmployee(ENumber, DNumber(null), RNumber, EName, ERRN, EAddr,  StartDate, ResignationDate(null))
 insert into tEmployee values('E0001',null,'R0001','김이수','850726-1118323','서울시 강남구','2018-01-02 09:00:00',null); -- 부서없는애들
@@ -325,66 +330,71 @@ insert into tReturn values('R5002','O5003',872,'RR0004','2022-01-20 10:53:05'); 
 insert into tReturn values('R5003','O5004',1212,'RR0002','2022-01-29 10:53:05'); -- 음료
 
 
---#1. 부서 테이블의 모든 데이터를 출력하라.
-select * from tDepartment;
---#2. 직원 테이블에서 각 직원의 직원코드, 직급코드, 이름, 입사일을 출력하라.
-select ENumber,RNumber,EName,StartDate
-from `tEmployee`
---#3. 직원 테이블에서 직급코드를 출력하되, 각 항목이 중복되지 않게 출력하라.
-select distinct RNumber
-from `tEmployee`;
---#4. 생산량이 500 이상인 생산의 직원코드와 제품코드를 출력하라.
-select ENumber,INumber
+--1. 부서코드가 ‘D1001’과 ‘D2001’에 해당하는 직원들의 직원명과 입사일을 입사일이 빠른 순서대로 출력하라.(단, 입사일은 연,월,일까지만 출력되어야 한다.)- date_format()
+select EName,date_format(StartDate, '%Y-%m-%d')
+from tEmployee
+where DNumber in ('D1001','D2001')order by StartDate
+--2. 제품 별로 생산량 최저, 최고, 총, 평균을 구하라. (min(), max(), sum(), avg())
+select min(PCount),max(PCount),avg(PCount)
 from tProduction
-where PCount>=500;
---#5. 부서코드가 ‘D4001’인 부서의 부서명을 출력하라.
-select DName
-from tDepartment
-where DNumber='D4001'
---6. 단가가 500이상 1000이하의 범위에 속하지 않는 모든 제품의 제품명과 단가를 출력하라.
-select IName,Price
+group by PNumber
+--3. 생산량 조정을 위해 2020년 2월의 총 생산량을 알려고 한다. 해당 월에 생산된 제품들의 코드와 해당 제품들의 총 생산량을 출력하시오. (총 생산량의 오름차순 출력) - sum()
+select INumber,sum(PCount)
+from tProduction
+where PDate like '2020-02%'
+group by INumber order by sum(PCount)
+--4. 가구류 제품들의 선호도 조사를 위하여 고객들이 가구류 제품들의 주문을 몇 번 했는지 고객코드별로 출력하시오. (가구류의 생산코드는 P2~로 시작한다)
+select count(*)
+from tOrder
+where PNumber like 'P2%'
+group by CNumber
+--5. 제품별 최저 생산량이 1000 이상인 제품의 제품번호와 최저 생산량을 출력하시오.
+select PNumber,min(PCount)
+from tProduction
+group by PNumber having min(PCount) >=1000
+--6. 2020년 1월의 성실직원을 뽑기 위해 성실직원의 기준인 생산량 500개 이상을 달성한 인원들의 직원코드와 총 생산량을 출력하시오.(총 생산량 내림차순)
+select ENumber, sum(PCount)
+from tProduction
+where PDate like '2020-01%'
+group by ENumber having sum(PCount) >=500 order by sum(PCount) desc
+--7. 고객별 거래 빈도를 파악하고자 한다. 주문을 2번 이상 한 고객들의 고객번호와 주문 횟수를 구하시오. (고객번호 오름차순 정렬)
+select CNumber, count(*) from t tOrder
+group by CNumber having count(*) >=2 order by CNumber
+--8. 직원별 업무 성과 분석을 위해 직원 코드별 총 생산량을 집계하려고 한다. 각 직원의 직원코드와 총 생산량을 출력하되, 총 생산량이 많은 순서대로 정렬하시오.
+select ENumber, sum(PCount)
+from tProduction
+group by ENumber order by sum(PCount) desc
+--9. 각 반품 사유별로 얼마나 많은 반품이 발생했는지 파악하고자 한다. 반품사유코드별 반품 건수와 총 반품 수량을 출력하시오.
+select RRNumber , sum(Rcount)
+from tReturn
+group by RRNumber
+--10. 고가 제품 위주로 정리를 위해 단가가 1000원 이상인 제품들만 선별한 뒤, 제품군(제품번호 앞 2자리 기준 - SUBSTR(INumber, 1, 2) or LEFT(INumber, 2))별 평균 단가를 출력하시오.
+select avg(Price)
 from tItem
-where  not ( Price >= 500 and Price <= 1000)
+where Price >=1000
+group by left(INumber,2)
+--11. 제품별 생산 안정성을 평가하기 위해 각 제품의 최소 생산량을 조사하려고 한다. 최소 생산량이 100 이상인 제품의 제품번호와 최소 생산량을 출력하시오.
+select PNumber,min(PCount)
+from tProduction
+group by PNumber having min(PCount) >= 100
+--12. 2020년 5월 이후 생산된 제품 중 총 생산량이 500 이상인 제품을 선별하려고 한다. 제품번호와 총 생산량을 출력하되, 총 생산량이 높은 순으로 정렬하시오.
+select PNumber, sum(PCount) from tProduction
+where PDate >= '2021-05-01' group by PNumber having sum(PCount)>=500 order by sum(Pcount) desc
+--13. 부서별 인사 현황을 파악하기 위해 각 부서의 인원수를 조사하려고 한다. 소속 부서가 있는 직원들을 대상으로 부서코드별 직원 수를 구하되, 직원 수가 5명 이상인 부서만 출력하시오.
+select count(*)
+from tEmployee
+group by DNumber
+having count(*)>=5
 
---7. 2010-05-01 이전에 입사한 직원의 직급코드, 이름, 주소, 입사일 출력하되, 입사일을 기준으로 오름차순으로 정렬하라. - to_date(’2010-05-01’)
-select RNumber,EName,EAddr,Startdate
-from `tEmployee`
-where `StartDate`<'2010-05-01' order by(`StartDate`)
---"8. 부서 코드가 ‘ D2001’, ‘D4001’ 에 속하는 모든 직원의 이름과 부서 코드를 출력하되, 이름을 기준으로 내림차순으로 정렬하라.(desc)
-select EName,DNumber
-from `tEmployee`
-where (DNumber='D2001') or (`DNumber`='D4001') order by 'DName' desc;
---9. 부서 코드가 ‘D2001’, ‘D4001’ 에 속하는 모든 직원 중 입사일이 ‘2010-05-01’ 이전에 입사한 직원의 이름과 부서 코드, 입사일을 출력하라.
-select EName,DNumber,Startdate
-from `tEmployee`
-where (DNumber='D2001' or `DNumber`='D4001') and `StartDate`<'2010-05-01' ;
---#10. 부서 코드가 없는 직원의 이름과 직급코드를 출력하라.
-select EName,RNumber
-from `tEmployee`
-where DNumber is Null
---#11. ERRN의 첫 번째 문자가 ‘9’인 모든 사원의 이름과 ERRN을 출력하라.
-select EName,ERRN
-from `tEmployee`
-where ERRN like '9%'
---#12. ERRN의 두 번째 문자가 ‘3’인 모든 사원의 이름과 ERRN을 출력하라.
-select EName,ERRN
-from `tEmployee`
-where ERRN like '_3%'
---#13. 테이블에서 부서코드가 'D4001'이고, 직급코드가 'R0001'인 직원들의 이름과 주소를 출력하라.
-select EName,EAddr
-from `tEmployee`
-where (DNumber='D4001') and (RNumber='R0001')
---#14. 이블에서 단가가 500 이상이고 1500 이하인 제품 중에서, 제품코드가 'I1001', 'I1002', 'I1003' 중 하나인 제품의 이름과 단가를 출력하라.
-select IName,Price
-from `tItem`
-where (price>=500 and price<=1500) and (INumber='I1001' or INumber='I1002' or `INumber`='I1003')
---#15. 테이블에서 반품 수량이 100 이상이고, 반품 사유 코드(RRNumber)가 'RR0001' 또는 'RR0002'인 반품의 반품번호와 반품일자를 출력하라.
-select RNumber,RDate
-from `tReturn`
-where (`RCount`>=100) and( RRNumber='RR0001' or RRNumber='RR0002')
---#16. 직급코드가 R0001, R0002, R0003 이고, 부서코드가 D1001이 아닌 직원의 이름, 직급코드, 주소를 출력하라.
-select EName,RNumber,EAddr
-from `tEmployee`
-where (RNumber='R0001' or RNumber='R0002' or RNumber='R0003') and ( not RNumber='D1001')
-
-
+--14. 2020년 3월 한 달 동안의 직원별 생산 활동을 분석하려고 한다. 직원 코드별 생산 건수와 평균 생산량을 출력하시오. 평균 생산량이 높은 순서대로 정렬하시오.
+select count(PCount),avg(PCount)
+from tProduction
+where PDate like '2020-03%'
+group by ENumber order by avg(PCount) desc
+--15. 주문별 반품 현황을 확인하고자 한다. 총 반품 수량이 500 이상인 주문에 대해 주문번호와 총 반품 수량을 출력하시오. 반품 수량이 많은 순으로 정렬하시오.
+select DNumber, sum(RCount)
+from tReturn
+group by ONumber having sum(RCount)>=500 order by sum(Rcount) desc
+--16. 생산 건수가 많은 제품을 선별하고자 한다. 제품번호별 생산 건수를 구하되, 생산 건수가 3건 이상인 제품만 출력하시오. (제품번호 오름차순 정렬)
+select count(*)
+from tProduction group by INumber having count(*) >=3 order by INumber
