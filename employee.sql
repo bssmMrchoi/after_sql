@@ -311,6 +311,7 @@ insert into tOrder values('O5011','C5002','P5013','2021-03-18 14:55:10');
 insert into tOrder values('O5012','C5003','P5012','2021-05-27 17:24:10');
 insert into tOrder values('O5013','C5004','P5011','2021-07-07 18:10:43');
 
+
 -- tReturn(RNumber, ONumber, RCount, RRNumber, RDate)
 insert into tReturn values('R1001','O1002',5,'RR0001','2022-01-03 13:32:07'); -- 문구
 insert into tReturn values('R1002','O1007',700,'RR0004','2022-01-03 15:17:47'); -- 문구
