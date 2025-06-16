@@ -43,7 +43,10 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="7b8354fd-648c-4d97-bb21-12c0381d7af1" object-ref="consoles/Connection 1" />
+      <object connection-id="948b4d7a-660c-4452-8d54-bc159903959a" object-ref="consoles/Connection_account" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="001ef8b0-0cae-4c81-8351-7829a8639807" />
@@ -58,6 +61,7 @@
     <mapping file-url="file://$PROJECT_DIR$/hospital.sql" connection-id="7b8354fd-648c-4d97-bb21-12c0381d7af1" session-id="MAIN" current-schema="team_1_2" />
     <mapping file-url="file://$PROJECT_DIR$/통합 예제 문제2.sql" connection-id="001ef8b0-0cae-4c81-8351-7829a8639807" session-id="MAIN" current-schema="study_sql" />
     <mapping file-url="file://$PROJECT_DIR$/killing.sql" connection-id="7b8354fd-648c-4d97-bb21-12c0381d7af1" session-id="MAIN" current-schema="team_1_2" />
+    <mapping file-url="file://$PROJECT_DIR$/통합 예제 문제3.sql" connection-id="7b8354fd-648c-4d97-bb21-12c0381d7af1" session-id="MAIN" current-schema="study_sql" />
     <mapping file-url="file://$PROJECT_DIR$/employee.sql" connection-id="948b4d7a-660c-4452-8d54-bc159903959a" session-id="MAIN" current-schema="employee" />
     <mapping file-url="file://$PROJECT_DIR$/통합 예제 문제.sql" connection-id="948b4d7a-660c-4452-8d54-bc159903959a" session-id="MAIN" current-schema="mysql" />
   </component>
