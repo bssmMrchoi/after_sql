@@ -20,3 +20,5 @@ select tItem.IName, tCustomer.CName from tItem join tProduction on tItem.INumber
 select tCustomer.CName, tItem.IName, tReturn.RCount from tCustomer join tOrder on tCustomer.CNumber = tOrder.CNumber join tProduction on tOrder.PNumber = tProduction.PNumber join tItem on tProduction.INumber = tItem.INumber join tReturn on tOrder.ONumber = tReturn.ONumber;
 select tDepartment.DName, tRank.RName, tEmployee.EName from tDepartment join tEmployee on tDepartment.DNumber = tEmployee.DNumber join tRank on tEmployee.RNumber = tRank.RNumber;
 select tCustomer.CName, count(*) from tCustomer left join tOrder on tCustomer.CNumber = tOrder.CNumber group by tCustomer.CName;
+
+
