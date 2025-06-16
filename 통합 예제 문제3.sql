@@ -35,7 +35,11 @@ join tItem i on p.INumber=i.INumber
 
 select CName, IName, RCount
  from tReturn r
- join
+ join tOrder o on r.ONumber=o.ONumber
+join tCustomer c on o.CNumber=c.CNumber
+join tProduction p on o.PNumber=p.PNumber
+join tItem i on p.INumber=i.INumber
+
 
 select EName, DName, RName
 from tEmployee e
