@@ -1,0 +1,2 @@
+use study_sql;
+
