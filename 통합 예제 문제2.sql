@@ -7,7 +7,7 @@ use employee;
     select INumber,sum(PCount) from tproduction where PDate like '2020-02%' group by INumber order by sum(PCount);
 # 4. 가구류 제품들의 선호도 조사를 위하여 고객들이 가구류 제품들의 주문을 몇 번 했는지 고객코드별로 출력하시오. (가구류의 생산코드는 P2~로 시작한다)
     select CNumber,count(*) from torder where PNumber like 'p2%' group by CNumber;
-# 5. 제품별 최저 생산량이 1000 이상인 제품의 제품번호와 최저 생산량을 출력하시오.
+# 5. 제품별 최저 생산량이 1000 이상인 제품의 제품번호와 최저 생산량을 출력하시오.  
     select INumber,min(PCount) from tproduction group by INumber having min(PCount)>=1000;
 # 6. 2020년 1월의 성실직원을 뽑기 위해 성실직원의 기준인 생산량 500개 이상을 달성한 인원들의 직원코드와 총 생산량을 출력하시오.(총 생산량 내림차순)
     select ENumber,sum(PCount) from tproduction where PDate like '2020-01%' and PCount>=500 group by ENumber,PCount order by PCount desc;
