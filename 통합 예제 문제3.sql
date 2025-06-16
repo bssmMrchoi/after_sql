@@ -35,3 +35,5 @@ select CName,IName,RCount from tCustomer c join tOrder o on c.CNumber=o.CNumber 
 select tEmployee.EName, tDepartment.DName, tRank.RName from tEmployee join tDepartment on tEmployee.DNumber = tDepartment.DNumber join tRank on tEmployee.RNumber = tRank.RNumber;
 #10. 주문이 한 번도 없는 고객도 포함하여 고객명과 주문건수를 출력하라.(LEFT JOIN + GROUP BY + COUNT)
 select tCustomer.CName, count(tOrder.ONumber) from tCustomer left join tOrder on tCustomer.CNumber = tOrder.CNumber group by tCustomer.CName;
+
+
