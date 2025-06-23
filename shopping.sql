@@ -6,4 +6,4 @@ create table hospital (
     department VARCHAR(100),       -- 진료과
     director VARCHAR(100),         -- 병원장
     capacity INT                   -- 층 수
-);
+);'
