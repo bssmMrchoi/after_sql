@@ -45,4 +45,4 @@ select * from member_tbl_02;
 select m.custno, m.custname, m.grade, sum(t.price)
 from member_tbl_02 m join money_tbl_02 t on m.custno = t.custno
 group by m.custno, m.custname, m.grade
-order by sum(t.price) desc;
+order by sum(t.price) desc
