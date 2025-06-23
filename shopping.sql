@@ -46,3 +46,7 @@ select m.custno, m.custname, m.grade, sum(t.price)
 from member_tbl_02 m join money_tbl_02 t on m.custno = t.custno
 group by m.custno, m.custname, m.grade
 order by sum(t.price) desc
+
+UPDATE member_tbl_02 set custname = "김춘복" where name = "김행복"
+
+select * from member_tbl_02
