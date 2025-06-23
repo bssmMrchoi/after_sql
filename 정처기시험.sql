@@ -54,4 +54,4 @@ desc member_tbl_02;
 
 select mon.custno,mem.custname,mem.grade,sum(mon.price) from member_tbl_02 mem join money_tbl_02 mon on mem.custno=mon.custno group by mem.custno, mon.custno,mem.custname,mem.grade order by sum(mon.price) desc;
 
-update member_tbl_02 set custname='강준석',phone='010-9876-1234',address='부산광역시 강서구 가락대로 1393',joindate=20250623,grade='B',city='10' where custno=100001;
+update member_tbl_02 set custname='강준석',phone='010-9999-7777',address='부산광역시 강서구 가락대로 1393',joindate=20250623,grade='B',city='10' where custno=100001;
