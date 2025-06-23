@@ -7,5 +7,5 @@ create table member_tbl_02 (
    address varchar(60),
    joindate date,
    grade char(1),
-   
+   city char(1)
 );
