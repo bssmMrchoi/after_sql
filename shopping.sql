@@ -47,6 +47,6 @@ from member_tbl_02 m join money_tbl_02 t on m.custno = t.custno
 group by m.custno, m.custname, m.grade
 order by sum(t.price) desc
 
-UPDATE member_tbl_02 set custname = "김춘복" where custname = "김행복"
+UPDATE member_tbl_02 set custname = "김춘복" , phone = "010-1111-8888", address = "김애시 이영민군 영민로", joindate = "2015-05-19", grade = "B", city = "4" where custno = 100001
 
 select * from member_tbl_02
