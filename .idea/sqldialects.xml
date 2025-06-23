@@ -3,6 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/hospital.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/killing.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/공개문제.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/통합 예제 값 insert.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/통합 예제 문제.sql" dialect="MySQL" />
   </component>
