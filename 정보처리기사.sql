@@ -50,6 +50,14 @@ join money_tbl_02 m on member_tbl_02.custno = m.custno
 group by member_tbl_02.custno, member_tbl_02.custname, member_tbl_02.grade
 order by sum(price) desc;
 
+# update 사용해보기
+update member_tbl_02
+set address = '부산 사상구 엄궁동', city = '44'
+where custno = 100001;
+update member_tbl_02
+set address = '울산 태화동', city = '66'
+where custno = 100005;
+select * from member_tbl_02;
 
 
 
