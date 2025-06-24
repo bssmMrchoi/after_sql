@@ -319,4 +319,4 @@ insert into tReturn values('R4003','O4001',11,'RR0001','2022-01-08 16:09:20'); -
 insert into tReturn values('R4004','O4002',9,'RR0001','2022-01-13 13:25:53'); -- 전자기기
 insert into tReturn values('R5001','O5002',5,'RR0001','2022-01-07 10:53:05'); -- 음료
 insert into tReturn values('R5002','O5003',872,'RR0004','2022-01-20 10:53:05'); -- 음료
-insert into tReturn values('R5003','O5004',1212,'RR0002','2022-01-29 10:53:05'); -- 음료
+# insert into tReturn values('R5003','O5004',1212,'RR0002','2022-01-29 10:53:05'); -- 음료
