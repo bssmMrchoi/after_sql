@@ -1,5 +1,6 @@
 use study_1_2;
-ㄹㅇㄴㅁㄹㄴㅁㅇㄹ
+ㅑㅇ두샤랻ㅇ
+
 # customer 생성
 create table Customer(
 	custid int primary key,
