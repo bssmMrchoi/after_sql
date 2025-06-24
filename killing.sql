@@ -1,7 +1,7 @@
 use study_1_2;
-ㅑㅇ두샤랻ㅇ
+ㅑㅇ두샤랻ㅇf
 
-# customer 생성
+# customer 생성dsafsfdsf
 create table Customer(
 	custid int primary key,
 	cname varchar(10) not null,
