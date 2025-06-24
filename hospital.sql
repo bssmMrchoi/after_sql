@@ -2,6 +2,8 @@ use study_1_2;
 
 create table test(id integer primary key);
 
+
+
 CREATE TABLE hospital (
     hospital_id INT PRIMARY KEY,   -- 병원 ID
     name VARCHAR(100),             -- 병원명
