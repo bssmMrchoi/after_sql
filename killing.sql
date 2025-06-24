@@ -15,7 +15,7 @@ create table Target(
 	address varchar(20) not null,
 	gang varchar(10),
 	price int not null
-);
+);as
 desc Target;
 
 # Order_kill 생성
