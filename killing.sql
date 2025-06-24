@@ -1,5 +1,5 @@
 use study_1_2;
-
+ㄹㅇㄴㅁㄹㄴㅁㅇㄹ
 # customer 생성
 create table Customer(
 	custid int primary key,
