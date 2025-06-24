@@ -18,3 +18,4 @@
 1. fork 후 clone
 2. 메뉴 &rarr; 설정 &rarr; 프로젝트 &rarr; 파이썬 인터프리터 &rarr; 인터프리터 추가 &rarr; 로컬 인터프리터 &rarr; 버전 3.12(이상) 추가
 3. (좌측 하단 터미널 클릭 후) `pip install -r requirements` 
+4. dndhk
