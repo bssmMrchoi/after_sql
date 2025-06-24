@@ -10,7 +10,7 @@ CREATE TABLE hospital (
 
 CREATE TABLE patient (
     patient_id INT PRIMARY KEY,    -- 환자 ID
-    name VARCHAR(100),             -- 이름
+    name VARCHAR(100),             -- 이름qweqwe
     phone VARCHAR(20),             -- 전화번호
     age INT,                       -- 나이
     symptoms TEXT                  -- 증상
