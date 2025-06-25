@@ -31,6 +31,7 @@ create table Order_Kill(
 desc Order_Kill;
 
 
+
 insert into Customer values(117, '야스오', '010-1101', '요네에게 누명쓰임요');
 insert into Customer values(917, '도우너 심슨', '010-2911', '부모의 원수');
 insert into Customer values(471, '이민길', '010-3812', '애인과의 결별');
