@@ -1,5 +1,6 @@
 use study_sql;
 
+
 insert into tDepartment values('D1001','문구생산부');
 insert into tDepartment values('D2001','가구생산부');
 insert into tDepartment values('D3001','악세사리생산부');
