@@ -93,3 +93,5 @@ order by cnt asc limit 1;
 select h.name, count(distinct a.patient_id)
 from hospital h join appointment a on h.hospital_id = a.hospital_id
 group by h.name;
+
+create database woosoung;
